@@ -4,26 +4,27 @@
   
   
   <entry>
-    <title>123</title>
-    <link href="/2022/02/22/123/"/>
-    <url>/2022/02/22/123/</url>
+    <title>从零搭建个人博客</title>
+    <link href="/2022/02/22/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2022/02/22/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     
-    <content type="html"><![CDATA[<p>你好</p><img src="/2022/02/22/123/github1.png" class title="This is an example image">]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>newpage</title>
-    <link href="/2022/02/21/newpage/"/>
-    <url>/2022/02/21/newpage/</url>
-    
-    <content type="html"><![CDATA[<p>你好</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搭建个人博客的初衷是为了记录与分享自己学习的过程。本篇文章记录了从零搭建属于自己博客网站的操作步骤，希望对看到这篇文章的你有所帮助</p><span id="more"></span><h1 id="Hexo搭建"><a href="#Hexo搭建" class="headerlink" title="Hexo搭建"></a>Hexo搭建</h1><p>Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。大家可以进入hexo官网（<a href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a> ）进行详细查看，因为Hexo的创建者是台湾人，对中文的支持很友好，可以选择中文进行查看<br>本篇教程博客包括三个部分：</p><p>1.Hexo的初级搭建+部署到github仓库+域名绑定<br>2.Hexo基本配置（更换主题等）<br>3.Hexo各种功能的添加（阅读量统计、访问量统计等）</p><h2 id="Hexo的初级搭建-部署到github仓库-域名绑定"><a href="#Hexo的初级搭建-部署到github仓库-域名绑定" class="headerlink" title="Hexo的初级搭建+部署到github仓库+域名绑定"></a>Hexo的初级搭建+部署到github仓库+域名绑定</h2><p>在博客搭建之前，需要具备如下前提：<br>1.安装Node.js并完成相应的环境配置<br>2.拥有属于自己的GitHub，并安装有Git</p><h3 id="第一步：在GitHub上创建仓库"><a href="#第一步：在GitHub上创建仓库" class="headerlink" title="第一步：在GitHub上创建仓库"></a>第一步：在GitHub上创建仓库</h3><p>登录Github账号，进入如下页面：</p><img src="/2022/02/22/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/github_login.png" class title="Github账户首页"><blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p></blockquote><figure class="highlight isbl"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-function"><span class="hljs-title">alert</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>);</span><br></code></pre></td></tr></table></figure><blockquote class="pullquote [class]"><p>content</p></blockquote><div class="video-container"><iframe src="https://www.youtube.com/embed/lJIrF4YjHfQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div><div class="video-container"><iframe src="https://www.youtube.com/embed/videoseries?list=PL9hW1uS6HUfscJ9DHkOSoOX45MjXduUxo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
     
     
+    <categories>
+      
+      <category>hexo</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+      <tag>github</tag>
+      
+    </tags>
     
   </entry>
   
