@@ -2,10 +2,10 @@
 title: Git分支多终端工作
 date: 2022-02-26 21:50:52
 tags:
-  -Git
-  -多终端
+  - Git
+  - 多终端
 categories:
-  -hexo
+  - hexo
 ---
 
 # 前言
