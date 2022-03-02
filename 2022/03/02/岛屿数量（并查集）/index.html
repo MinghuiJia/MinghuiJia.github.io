@@ -1,0 +1,745 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Minghui Jia">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题目给你一个由’1’（陆地）和’0’（水）组成的二维网格，请你计算网格钟岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和&#x2F;或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。  示例1： 1234567输入: grid &#x3D; [	[&quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="岛屿数量（并查集）">
+<meta property="og:url" content="http://minghuijia.cn/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/index.html">
+<meta property="og:site_name" content="贾明晖的博客">
+<meta property="og:description" content="题目给你一个由’1’（陆地）和’0’（水）组成的二维网格，请你计算网格钟岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和&#x2F;或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。  示例1： 1234567输入: grid &#x3D; [	[&quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &amp;quo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://minghuijia.cn/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/UnionFind1.png">
+<meta property="og:image" content="http://minghuijia.cn/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/UnionFind2.png">
+<meta property="article:published_time" content="2022-03-02T07:40:48.000Z">
+<meta property="article:modified_time" content="2022-03-02T12:45:06.128Z">
+<meta property="article:author" content="Minghui Jia">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="并查集">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://minghuijia.cn/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/UnionFind1.png">
+  
+  
+  <title>岛屿数量（并查集） - 贾明晖的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>贾明晖的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/archive_pic.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="岛屿数量（并查集）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Minghui Jia
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 15:40" pubdate>
+        2022年3月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">岛屿数量（并查集）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个由’1’（陆地）和’0’（水）组成的二维网格，请你计算网格钟岛屿的数量。岛屿总是被水包围，并且每座岛屿<strong>只能由水平方向和&#x2F;或竖直方向</strong>上相邻的陆地连接形成。<br>此外，你可以<strong>假设该网格的四条边均被水包围</strong>。</p>
+<ul>
+<li><p>示例1：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><pre><code class="hljs prolog">输入: grid = [<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>]<br>]<br>输出: <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>示例2：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入: grid = [<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>]<br>]<br>输出: <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="思路-代码"><a href="#思路-代码" class="headerlink" title="思路+代码"></a>思路+代码</h1><p>本题解可以采用DFS（深度优先搜索）、BFS（广度优先搜索）、并查集的方式完成解题。但是本篇文章重点介绍并查集的方法，并帮助读者理解并查集</p>
+<h2 id="并查集理论"><a href="#并查集理论" class="headerlink" title="并查集理论"></a>并查集理论</h2><p>并查集（union &amp; find）：用于处理一些元素合并和查询问题，主要包含三个方法与三个属性</p>
+<ul>
+<li>find(x)方法：确定x元素属于哪一个子集（寻找x元素的根节点）。实现方法采用<strong>路径压缩方式</strong></li>
+<li>isConnected(p, q)：用于判断两个元素是否属于同一个子集，即两元素是否连通</li>
+<li>union(p, q)：将两个元素所在的子集进行合并（前提是两个元素所在子集不连通）</li>
+<li>count：并查集总数（子集个数）</li>
+<li>parent：数组记录每个节点的父节点索引</li>
+<li>rank：数组记录每个子集树的深度，用在按秩合并记录树的深度，节约树结构搜索时的时间</li>
+</ul>
+<h2 id="并查集类实现（代码）"><a href="#并查集类实现（代码）" class="headerlink" title="并查集类实现（代码）"></a>并查集类实现（代码）</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">class</span> UnionFind&#123;<br><span class="hljs-keyword">public</span>:<br>	UnionFind(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; grid)&#123;<br>		<span class="hljs-keyword">int</span> rows = grid.<span class="hljs-keyword">size</span>();<br>		<span class="hljs-keyword">int</span> cols = grid[<span class="hljs-number">0</span>].<span class="hljs-keyword">size</span>();<br>		<span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;  <span class="hljs-comment">//之前忘记了</span><br>		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>; r &lt; rows; r++)<br>		&#123;<br>			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> c = <span class="hljs-number">0</span>; c &lt; cols; c++)<br>			&#123;<br>				<span class="hljs-keyword">if</span> (grid[r][c] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>				&#123;<br>					parent.push_back(r * cols + c);<br>					<span class="hljs-keyword">count</span>++;    <span class="hljs-comment">//之前忘记了</span><br>				&#125;<br>				<span class="hljs-keyword">else</span><br>					parent.push_back(-<span class="hljs-number">1</span>);<br>				rank.push_back(<span class="hljs-number">0</span>);<br>			&#125;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">int</span> <span class="hljs-keyword">find</span>(<span class="hljs-keyword">int</span> x)&#123;<br>		<span class="hljs-keyword">if</span> (parent[x] != x)<br>		&#123;<br>			parent[x] = <span class="hljs-keyword">find</span>(parent[x]);<br>		&#125;<br>		<br>		<span class="hljs-keyword">return</span> parent[x];<br>	&#125;<br><br>	<span class="hljs-keyword">void</span> unite(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)&#123;<br>		<span class="hljs-keyword">int</span> x_root = <span class="hljs-keyword">find</span>(x);<br>		<span class="hljs-keyword">int</span> y_root = <span class="hljs-keyword">find</span>(y);<br>		<span class="hljs-keyword">if</span> (x_root == y_root)<br>		&#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>		<span class="hljs-keyword">else</span><br>		&#123;<br>			<span class="hljs-keyword">if</span> (rank[x_root] &lt; rank[y_root])<br>			&#123;<br>				<span class="hljs-keyword">int</span> temp = rank[x_root];<br>				rank[x_root] = rank[y_root];<br>				rank[y_root] = temp;<br>			&#125;<br>			parent[y_root] = x_root;<br>			<span class="hljs-keyword">if</span> (rank[x_root] == rank[y_root])<br>				rank[x_root]++;<br>			<span class="hljs-keyword">count</span>--;    <span class="hljs-comment">//之前忘记了</span><br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>	&#125;<br><br>	bool isConnected(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">find</span>(x) == <span class="hljs-keyword">find</span>(y))<br>			<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>		<span class="hljs-keyword">else</span><br>			<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">int</span> getCount()&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">count</span>;<br>	&#125;<br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-keyword">int</span> <span class="hljs-keyword">count</span>;<br>	vector&lt;<span class="hljs-keyword">int</span>&gt; parent;<br>	vector&lt;<span class="hljs-keyword">int</span>&gt; rank;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="基于并查集类完成岛屿数量的题解"><a href="#基于并查集类完成岛屿数量的题解" class="headerlink" title="基于并查集类完成岛屿数量的题解"></a>基于并查集类完成岛屿数量的题解</h2><p>并查集可以代替树结构对邻近“岛屿”（“1”）进行搜索</p>
+<ul>
+<li>思路：扫描整个二维网格，如果该位置为“1”，则将其与相邻四个方向上的“1”在并查集中进行合并，最终岛屿的数量就是并查集（子集或连通分量）的数量<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs mel">class Solution &#123;<br>public:<br>    <span class="hljs-keyword">int</span> numIslands(<span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">vector</span>&lt;char&gt;&gt;&amp; <span class="hljs-keyword">grid</span>) &#123;<br>        <span class="hljs-keyword">int</span> rows = <span class="hljs-keyword">grid</span>.<span class="hljs-keyword">size</span>();<br>        <span class="hljs-keyword">int</span> cols = <span class="hljs-keyword">grid</span>[<span class="hljs-number">0</span>].<span class="hljs-keyword">size</span>();<br>        UnionFind uf(<span class="hljs-keyword">grid</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>; r &lt; rows; r++)<br>        &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> c = <span class="hljs-number">0</span>; c &lt; cols; c++)<br>            &#123;<br>                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">grid</span>[r][c] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                &#123;<br>                    <span class="hljs-keyword">grid</span>[r][c] = <span class="hljs-string">&#x27;0&#x27;</span>;<br>                    <span class="hljs-keyword">if</span> (r<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">grid</span>[r<span class="hljs-number">-1</span>][c] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, (r<span class="hljs-number">-1</span>) * cols + c);<br>                    <span class="hljs-keyword">if</span> (r+<span class="hljs-number">1</span> &lt; rows &amp;&amp; <span class="hljs-keyword">grid</span>[r+<span class="hljs-number">1</span>][c] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, (r+<span class="hljs-number">1</span>) * cols + c);<br>                    <span class="hljs-keyword">if</span> (c<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">grid</span>[r][c<span class="hljs-number">-1</span>] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, r * cols + c - <span class="hljs-number">1</span>);<br>                    <span class="hljs-keyword">if</span> (c+<span class="hljs-number">1</span> &lt; cols &amp;&amp; <span class="hljs-keyword">grid</span>[r][c+<span class="hljs-number">1</span>] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, r * cols + c + <span class="hljs-number">1</span>);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> uf.getCount();<br>    &#125;;<br>&#125;;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="辅助理解资料"><a href="#辅助理解资料" class="headerlink" title="辅助理解资料"></a>辅助理解资料</h1><h2 id="按秩合并"><a href="#按秩合并" class="headerlink" title="按秩合并"></a>按秩合并</h2><ul>
+<li>按秩合并可以通过减少森林的深度，来节约之后搜索的时间<br>例如有如下两个树型集合：<img src="/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/UnionFind1.png" srcset="/img/loading.gif" lazyload class>
+将A集合合并到D集合，合并后树的<strong>深度是3</strong>，而将D合并到A上，<strong>深度就变为4</strong>。因此在并查集类的合并方法中，只有当两个集合树的深度一样时，将两者合并后深度会+1，其余情况合并后深度为A、B集合深度的较大者，即：max(A,B)<img src="/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/UnionFind2.png" srcset="/img/loading.gif" lazyload class></li>
+</ul>
+<h2 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h2><ul>
+<li>路径压缩是为了防止出现树的不平衡状态，即为单分支树。采用路径压缩，只需要n(1)的时间复杂度即可找到父节点</li>
+<li>当数据过大，递归会导致爆栈，所以需要用非递归算法<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs powershell">int find(int x)<br>&#123;<br>	int k, j, <span class="hljs-built_in">r</span>;<br>	<span class="hljs-built_in">r</span> = x;<br>	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">r</span> != parent[<span class="hljs-type">r</span>])<br>		<span class="hljs-built_in">r</span> = parent[<span class="hljs-type">r</span>];<br>	k = x;        <br>	<span class="hljs-keyword">while</span>(k != <span class="hljs-built_in">r</span>) <br>	&#123;<br>		j = parent[<span class="hljs-type">k</span>]; <br>		parent[<span class="hljs-type">k</span>] = <span class="hljs-built_in">r</span>; <br>		k = j; <br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-built_in">r</span>; <br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="算法步骤流程"><a href="#算法步骤流程" class="headerlink" title="算法步骤流程"></a>算法步骤流程</h2><ul>
+<li>如下示例：<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs prolog">输入: grid = [<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>],<br>	[<span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>],<br>	[<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>]<br>]<br>输出: <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure></li>
+<li>parent和rank数组变化情况表：<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+<th align="center">9</th>
+<th align="center">10</th>
+<th align="center">11</th>
+<th align="center">count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">parent1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">-1</td>
+<td align="center">4</td>
+<td align="center">-1</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+<td align="center">11</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rank1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">7</td>
+</tr>
+<tr>
+<td align="center">parent2</td>
+<td align="center">0</td>
+<td align="center"><strong>0</strong></td>
+<td align="center">2</td>
+<td align="center">-1</td>
+<td align="center">4</td>
+<td align="center">-1</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+<td align="center">11</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rank2</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">6</td>
+</tr>
+<tr>
+<td align="center">parent3</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"><strong>0</strong></td>
+<td align="center">-1</td>
+<td align="center">4</td>
+<td align="center">-1</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+<td align="center">11</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rank3</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td align="center">parent4</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+<td align="center"><strong>0</strong></td>
+<td align="center">-1</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center">9</td>
+<td align="center">-1</td>
+<td align="center">11</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rank4</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">parent5</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
+<td align="center"><strong>6</strong></td>
+<td align="center">-1</td>
+<td align="center">11</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rank5</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<br>
+<br>
+
+
+<p>来源：LeetCode<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/solution/200-dao-yu-shu-liang-bing-cha-ji-by-chen-1az1/">并查集</a>、<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-shu-liang-by-leetcode/">岛屿官方题解</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">并查集</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/">
+                        <span class="hidden-mobile">Git分支多终端工作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6a8f7ee0eed65b5aecb3525bca5543a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
