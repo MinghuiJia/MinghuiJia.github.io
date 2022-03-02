@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Minghui Jia">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题目给你两个字符串haystack和needle，请你在haystack字符串中找出needle字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回-1说明：当needle是空字符串时应当返回0，与C语言中的strstr()以及Java中的indexOf()定义相符  示例1： 12输入：haystack &#x3D; &quot;hello&quot;, needle &#x3D; &quot;ll&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP字符串匹配">
+<meta property="og:url" content="http://minghuijia.cn/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/index.html">
+<meta property="og:site_name" content="贾明晖的博客">
+<meta property="og:description" content="题目给你两个字符串haystack和needle，请你在haystack字符串中找出needle字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回-1说明：当needle是空字符串时应当返回0，与C语言中的strstr()以及Java中的indexOf()定义相符  示例1： 12输入：haystack &#x3D; &quot;hello&quot;, needle &#x3D; &quot;ll&amp;qu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://minghuijia.cn/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/KMP1.png">
+<meta property="article:published_time" content="2022-03-02T13:36:46.000Z">
+<meta property="article:modified_time" content="2022-03-02T14:40:01.578Z">
+<meta property="article:author" content="Minghui Jia">
+<meta property="article:tag" content="KMP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://minghuijia.cn/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/KMP1.png">
+  
+  
+  <title>KMP字符串匹配 - 贾明晖的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>贾明晖的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/archive_pic.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="KMP字符串匹配">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Minghui Jia
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-02 21:36" pubdate>
+        2022年3月2日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">KMP字符串匹配</h1>
+            
+            <div class="markdown-body">
+              <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你两个字符串<code>haystack</code>和<code>needle</code>，请你在<code>haystack</code>字符串中找出<code>needle</code>字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回<code>-1</code><br><strong>说明：</strong><br>当<code>needle</code>是空字符串时应当返回0，与C语言中的<code>strstr()</code>以及Java中的<code>indexOf()</code>定义相符</p>
+<ul>
+<li><p>示例1：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">haystack</span> = <span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-attr">needle</span> = <span class="hljs-string">&quot;ll&quot;</span><br>输出：<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>示例2：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">haystack</span> = <span class="hljs-string">&quot;aaaaa&quot;</span>, <span class="hljs-attr">needle</span> = <span class="hljs-string">&quot;bba&quot;</span><br>输出：-<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>示例3：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">haystack</span> = <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">needle</span> = <span class="hljs-string">&quot;&quot;</span><br>输出：<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="思路-代码"><a href="#思路-代码" class="headerlink" title="思路+代码"></a>思路+代码</h1><p>本题可以采用暴力解法完成字符串匹配，但是在LeetCode中提交会超时，需要采用KMP算法完成此题</p>
+<h2 id="KMP理论"><a href="#KMP理论" class="headerlink" title="KMP理论"></a>KMP理论</h2><p>Knuth–Morris–Pratt（KMP）算法是一种改进的字符串匹配算法，它的核心是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。它的时间复杂度是<em><strong>O(m + n)</strong></em></p>
+<h2 id="构建next数组"><a href="#构建next数组" class="headerlink" title="构建next数组"></a>构建next数组</h2><p>在完成KMP算法之前，需要构建<em><strong>next数组</strong></em>。<code>next[i]</code>所对应的含义为：<code>P[0, 1, ..., i-1]</code>的最长公共前缀后缀的长度，令<code>p[0] = -1</code><br>例如字符串<code>abcba</code>:</p>
+<ul>
+<li>前缀包括：<code>a, ab, abc, abcb</code></li>
+<li>后缀包括：<code>bcba, cba, ba, a</code></li>
+<li>最长公共前缀后缀：<code>a</code>，长度为<code>1</code><br>图解如下：<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">A</th>
+<th align="center">C</th>
+<th align="center">T</th>
+<th align="center">G</th>
+<th align="center">P</th>
+<th align="center">A</th>
+<th align="center">C</th>
+<th align="center">Y</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">next</td>
+<td align="center">-1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"><em><strong>1</strong></em></td>
+<td align="center"><em><strong>2</strong></em></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">gextNext</span><span class="hljs-params">(string needle)</span></span><br><span class="hljs-function">   </span>&#123;<br>       <span class="hljs-type">int</span> length = needle.<span class="hljs-built_in">size</span>();<br>       <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">N</span><span class="hljs-params">(length)</span></span>;<br>       N[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>;<br>       <span class="hljs-type">int</span> k = <span class="hljs-number">-1</span>;<br>       <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<br>       <span class="hljs-keyword">while</span>(j &lt; length - <span class="hljs-number">1</span>)<br>       &#123;<br>           <span class="hljs-keyword">if</span> (k &lt; <span class="hljs-number">0</span> || needle[k] == needle[j])<br>           &#123;<br>               k++;<br>               j++;<br>               N[j] = k;<br>           &#125;<br>           <span class="hljs-keyword">else</span><br>           &#123;<br>               k = N[k];<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">return</span> N;<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="KMP思路"><a href="#KMP思路" class="headerlink" title="KMP思路"></a>KMP思路</h2><ul>
+<li>当主串与子串的数组索引分别停留在<code>i</code>与<code>j</code></li>
+<li>发现此时两个位置的字符不匹配，基于<code>next</code>数组将子串的索引更新到<code>next[j]</code></li>
+<li>此时主串的索引不动，与更新后的子串索引所在位置进行比较</li>
+</ul>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs mel">	<span class="hljs-keyword">int</span> strStr(<span class="hljs-keyword">string</span> haystack, <span class="hljs-keyword">string</span> needle) &#123;<br>    <span class="hljs-keyword">int</span> haystack_length = haystack.<span class="hljs-keyword">size</span>();<br>    <span class="hljs-keyword">int</span> needle_length = needle.<span class="hljs-keyword">size</span>();<br>    <span class="hljs-keyword">if</span> (needle_length == <span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; next = gextNext(needle);<br>    <span class="hljs-keyword">int</span> h_index = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> n_index = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>((h_index &lt; haystack_length) &amp;&amp; (n_index &lt; needle_length))<br>    &#123;<br>        <span class="hljs-keyword">if</span> (n_index &lt; <span class="hljs-number">0</span> || (haystack[h_index] == needle[n_index]))<br>        &#123;<br>            h_index++;<br>            n_index++;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            n_index = next[n_index];<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (n_index == needle_length)<br>    &#123;<br>        <span class="hljs-keyword">return</span> h_index - n_index;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="辅助理解资料"><a href="#辅助理解资料" class="headerlink" title="辅助理解资料"></a>辅助理解资料</h1><h2 id="递推求next数组"><a href="#递推求next数组" class="headerlink" title="递推求next数组"></a>递推求next数组</h2><p>我们很容易的可以知道，<code>next[0] = -1</code>，<code>next[1] = 0</code>也是容易推得的。那么当<code>j &gt; 1</code>时，如果我们已知了<code>next[j]</code>，那么<code>next[j + 1]</code>怎么求得呢？？？<br>下面分两种情况：</p>
+<ul>
+<li>当<code>P[K] = P[j]</code>时，<code>next[j+1] = next[j] + 1 = k + 1</code>，当前模式串中在<code>j + 1</code>所对应字符前有<code>K + 1</code>长度的最大公共前后缀</li>
+<li>当<code>P[K] != P[j]</code>时，说明<code>P[0]P[1]...P[k-1]P[k] != P[j-k]P[j-k+1]...P[j]</code>，也就是当前模式串中在<code>j + 1</code>所对应字符前没有长度为<code>K + 1</code>的最大公共前后缀，只能寻找更短的最大公共前后缀</li>
+<li>因此，在<code>P[0]P[1]...P[k-1]P[k]</code>中不断递归索引<code>k = next[k]</code>，找到一个字符<code>P[K&#39;]</code>，那么最大公共前后缀长度就是<code>K&#39; + 1</code>S</li>
+</ul>
+<h2 id="解释k-x3D-next-k-能找到长度更短的最大公共前后缀"><a href="#解释k-x3D-next-k-能找到长度更短的最大公共前后缀" class="headerlink" title="解释k &#x3D; next[k]能找到长度更短的最大公共前后缀"></a>解释k &#x3D; next[k]能找到长度更短的最大公共前后缀</h2><img src="/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/KMP1.png" srcset="/img/loading.gif" lazyload class>
+
+<br>
+<br>
+
+
+<p>来源：LeetCode、CSDN<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/leetbook/read/array-and-string/cm5e2/">实现strStr()</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/yyzsir/article/details/89462339">KMP算法详解</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/KMP/">KMP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/">
+                        <span class="hidden-mobile">岛屿数量（并查集）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6a8f7ee0eed65b5aecb3525bca5543a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
