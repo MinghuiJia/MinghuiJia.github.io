@@ -78,9 +78,9 @@ Qt线程的创建有两种方式：
 	{
 		QThread* m_workThread = new QThread();
 		workThread* worker = new workThread();
-		//需要设置一个信号槽连接
-
 		worker->moveToThread(m_workThread);
+		
+		//建立信号槽连接
 		connect(m_workThread, &QThread::started, worker, &workThread::start1);
 		connect(worker, &workThread::workFinished, worker, &workThread::deleteLater);
 		connect(worker, &workThread::workFinished, m_workThread, &QThread::quit);
