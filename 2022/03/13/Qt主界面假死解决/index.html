@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Minghui Jia">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言在利用Qt进行可视化编程时，某个过于耗时的操作会造成界面卡死现象。例如用户点击界面的Button控件，程序会执行clicked槽函数中的操作，但是槽函数中的操作特别耗时，此时界面处于卡死状态（用户无法进行任何操作，包括拖动界面）。为了解决这一“假死”现象，需要用到多线程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt主界面假死解决">
+<meta property="og:url" content="http://minghuijia.cn/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/index.html">
+<meta property="og:site_name" content="贾明晖的博客">
+<meta property="og:description" content="前言在利用Qt进行可视化编程时，某个过于耗时的操作会造成界面卡死现象。例如用户点击界面的Button控件，程序会执行clicked槽函数中的操作，但是槽函数中的操作特别耗时，此时界面处于卡死状态（用户无法进行任何操作，包括拖动界面）。为了解决这一“假死”现象，需要用到多线程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://minghuijia.cn/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png">
+<meta property="article:published_time" content="2022-03-13T12:26:06.000Z">
+<meta property="article:modified_time" content="2022-03-13T13:42:30.466Z">
+<meta property="article:author" content="Minghui Jia">
+<meta property="article:tag" content="Qt可视化编程">
+<meta property="article:tag" content="界面假死">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://minghuijia.cn/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png">
+  
+  
+  <title>Qt主界面假死解决 - 贾明晖的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>贾明晖的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/archive_pic.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Qt主界面假死解决">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Minghui Jia
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-13 20:26" pubdate>
+        2022年3月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Qt主界面假死解决</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在利用Qt进行可视化编程时，某个过于耗时的操作会造成界面卡死现象。例如用户点击界面的Button控件，程序会执行clicked槽函数中的操作，但是槽函数中的操作特别耗时，此时界面处于卡死状态（用户无法进行任何操作，包括拖动界面）。为了解决这一“假死”现象，需要用到<strong>多线程</strong>。</p>
+<span id="more"></span>
+
+<h1 id="多线程解决Qt主界面假死的原理"><a href="#多线程解决Qt主界面假死的原理" class="headerlink" title="多线程解决Qt主界面假死的原理"></a>多线程解决Qt主界面假死的原理</h1><p>当前我们编写的程序大多都是单线程执行，并且Qt的可视化界面逻辑代码也与执行耗时操作的代码处在同一个线程中。因此遇到耗时操作时，程序需要等到耗时操作执行完成后再继续执行后续代码，界面中的交互功能也不能使用，呈现出“假死”状态。而采用多线程编程，将耗时操作放在新开辟的线程中可以避免上述问题。下面将详细介绍如何解决Qt主界面假死问题</p>
+<h1 id="构造新的线程类workThread"><a href="#构造新的线程类workThread" class="headerlink" title="构造新的线程类workThread"></a>构造新的线程类workThread</h1><p>Qt线程的创建有两种方式：</p>
+<ul>
+<li>继承QThread的方式，然后重写run，但是这种方式官方已经不推荐了</li>
+<li>继承QObject，构建新的类然后move到新的线程中</li>
+</ul>
+<p>构建新的类中，重点需要关注信号（signals）和槽（slots）的定义与实现</p>
+<ul>
+<li>signals包括：任务开始（workStart）与任务结束（workFinished）</li>
+<li>slots包括：线程开始（start1）与操作执行（doWork）</li>
+</ul>
+<ol>
+<li>在Widget.h文件中定义如下线程类：<figure class="highlight csharp"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">workThread</span> : <span class="hljs-title">public</span> <span class="hljs-title">QObject</span><br>&#123;<br>	Q_OBJECT<br><span class="hljs-keyword">public</span>:<br>	workThread(QObject* parent = nullptr);<br>	~workThread();<br>	<span class="hljs-built_in">bool</span> m_bStart;<br><br><span class="hljs-keyword">public</span> slots:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">start1</span>()</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doWork</span>()</span>;<br><br>signals:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">workFinished</span>()</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">workStart</span>()</span>;<br>&#125;;<br></code></pre></td></tr></table></figure></li>
+<li>在Widget.cpp文件中完善workThread类中的方法<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">workThread::work<span class="hljs-constructor">Thread(QObject<span class="hljs-operator">*</span> <span class="hljs-params">parent</span>)</span> : <span class="hljs-constructor">QObject(<span class="hljs-params">parent</span>)</span><br>&#123;<br>	this-&gt;m_bStart = <span class="hljs-literal">false</span>;<br>&#125;<br><br>workThread::~work<span class="hljs-constructor">Thread()</span><br>&#123;<br><br>&#125;<br>void workThread::start1<span class="hljs-literal">()</span><br>&#123;<br>	emit work<span class="hljs-constructor">Start()</span>;	<span class="hljs-comment">//发送信号，表明线程开始工作</span><br>	<span class="hljs-keyword">do</span><span class="hljs-constructor">Work()</span>;			<span class="hljs-comment">//开始执行线程内的操作</span><br>&#125;<br>void workThread::<span class="hljs-keyword">do</span><span class="hljs-constructor">Work()</span><br>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000000</span>; i++)<br>	&#123;<br>		q<span class="hljs-constructor">Debug()</span> &lt;&lt; i;<br>	&#125;<br>	emit work<span class="hljs-constructor">Finished()</span>;	<span class="hljs-comment">//发送信号，表明线程结束工作</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="给Button绑定clicked事件测试"><a href="#给Button绑定clicked事件测试" class="headerlink" title="给Button绑定clicked事件测试"></a>给Button绑定clicked事件测试</h1><ul>
+<li>给Button绑定clicked事件</li>
+<li>在clicked槽函数中创建一个新的线程m_workThread对象</li>
+<li>创建定义好的workThread对象worker，move到新线程中</li>
+<li>完成相应的信号与槽的连接<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs dts">void QtWidgetsApplication1::on_pushButton_clicked()<br><span class="hljs-punctuation">&#123;</span><br>	QThread* m_workT<span class="hljs-attr">hread</span> <span class="hljs-operator">=</span> new QThread()<span class="hljs-punctuation">;</span><br>	workThread* <span class="hljs-attr">worker</span> <span class="hljs-operator">=</span> new workThread()<span class="hljs-punctuation">;</span><br>	<span class="hljs-comment">//需要设置一个信号槽连接</span><br><br>	worker-&gt;moveToThread(m_workThread)<span class="hljs-punctuation">;</span><br>	connect(m_workThread, <span class="hljs-variable">&amp;</span>QThread::started, worker, <span class="hljs-variable">&amp;</span>workThread::start1)<span class="hljs-punctuation">;</span><br>	connect(worker, <span class="hljs-variable">&amp;</span>workThread::workFinished, worker, <span class="hljs-variable">&amp;</span>workThread::deleteLater)<span class="hljs-punctuation">;</span><br>	connect(worker, <span class="hljs-variable">&amp;</span>workThread::workFinished, m_workThread, <span class="hljs-variable">&amp;</span>QThread::quit)<span class="hljs-punctuation">;</span><br>	connect(m_workThread, <span class="hljs-variable">&amp;</span>QThread::finished, m_workThread, <span class="hljs-variable">&amp;</span>QThread::deleteLater)<span class="hljs-punctuation">;</span><br>	worker-&gt;m_bS<span class="hljs-attr">tart</span> <span class="hljs-operator">=</span> <span class="hljs-attr">true</span><span class="hljs-punctuation">;</span><br>	m_workThread-&gt;start()<span class="hljs-punctuation">;</span><br>	worker-&gt;m_bS<span class="hljs-attr">tart</span> <span class="hljs-operator">=</span> <span class="hljs-attr">false</span><span class="hljs-punctuation">;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>程序运行截图如下：</p>
+<img src="/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png" srcset="/img/loading.gif" lazyload class>
+<p>此时，程序在执行1000000次循环输出，而可视化界面不会卡死</p>
+<p><em><strong>注意：因为此时界面和耗时程序执行操作在两个线程，如果后续需要传递数据的话，可以将数据通过信号槽的方式传递</strong></em></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Qt/">Qt</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Qt%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/">Qt可视化编程</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB/">界面假死</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
+                        <span class="hidden-mobile">KMP字符串匹配</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6a8f7ee0eed65b5aecb3525bca5543a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
