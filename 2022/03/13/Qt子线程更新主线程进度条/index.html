@@ -326,7 +326,7 @@
                     
                       <a href="/2022/03/14/Hexo-fluid%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE%E7%BB%9F%E8%AE%A1%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E9%87%8F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo-fluid主题设置统计博客阅读量</span>
+                        <span class="hidden-mobile">Hexo-fluid主题设置统计博客阅读量与评论</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -345,6 +345,35 @@
               
             </div>
 
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":null,"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
             
           </article>
         </div>
