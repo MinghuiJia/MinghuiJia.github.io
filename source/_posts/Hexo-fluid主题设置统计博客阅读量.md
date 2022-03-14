@@ -1,11 +1,13 @@
 ---
 title: Hexo-fluid主题设置统计博客阅读量
 date: 2022-03-14 21:05:19
+comment: 'valine'
 tags:
  - hexo
  - 博客阅读量
 categories:
  - hexo
+
 ---
 # 前言
 本篇博客基于LeanCloud统计博客页面访问次数与访问人数，以及文章阅读次数
