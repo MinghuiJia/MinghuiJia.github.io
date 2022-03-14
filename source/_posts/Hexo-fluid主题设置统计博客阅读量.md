@@ -1,16 +1,17 @@
 ---
-title: Hexo-fluid主题设置统计博客阅读量
+title: Hexo-fluid主题设置统计博客阅读量与评论
 date: 2022-03-14 21:05:19
-comment: 'valine'
+comment: false
 tags:
  - hexo
  - 博客阅读量
+ - 评论设置
 categories:
  - hexo
 
 ---
 # 前言
-本篇博客基于LeanCloud统计博客页面访问次数与访问人数，以及文章阅读次数
+本篇博客基于LeanCloud统计博客页面访问次数与访问人数、及文章阅读次数，以及实现文章与友情链接评论功能
 <!-- more -->
 
 # 配置 LeanCloud
@@ -79,4 +80,82 @@ views:
 当以上部分配置完成之后，我们的博客页面打开时，便会自动向服务器发送信息，在我们刚才创建的应用test的Counter表中创建数据
 {% asset_image step8.png %}
 ***需要特别说明的是：***
-记录文章访问量的唯一标识符是文章的发布日期和文章的标题，因此要确保这两个数值组合的唯一性，如果你更改了这两个数值，会造成文章阅读数值的清零重计。其中time字段的数值表示某一篇文章的访问量，其他字段的具体作用可以查阅LeanCloud官方文档，最好不要随意修改。
+记录文章访问量的唯一标识符是文章的发布日期和文章的标题，因此要确保这两个数值组合的唯一性，如果你更改了这两个数值，会造成文章阅读数值的清零重计。其中time字段的数值表示某一篇文章的访问量，其他字段的具体作用可以查阅LeanCloud官方文档，最好不要随意修改
+
+# 评论设置
+1. 当用户配置好LeanCloud后，可以在主题配置文件`_config.yml`文件中找到评论插件部分，设置`Valine`部分的`appId`与`appKey`即可。
+更多参数设置可以访问https://valine.js.org/configuration.html
+{% codeblock %}
+#---------------------------
+# 评论插件
+# Comment plugins
+#
+# 开启评论需要先设置上方 `post: comments: enable: true`，然后根据 `type` 设置下方对应的评论插件参数
+# Enable comments need to be set `post: comments: enable: true`, then set the corresponding comment plugin parameters below according to `type`
+#---------------------------
+# Valine
+# 基于 LeanCloud
+# Based on LeanCloud
+# See: https://valine.js.org/
+valine:
+  appId: xxx
+  appKey: xxx
+  path: window.location.pathname
+  placeholder: 欢迎评论
+  avatar: 'retro'
+  meta: ['nick', 'mail', 'link']
+  requiredFields: []
+  pageSize: 10
+  lang: 'zh-CN'
+  highlight: false
+  recordIP: false
+  serverURLs: ''
+  emojiCDN:
+  emojiMaps:
+  enableQQ: false
+{% endcodeblock %}
+
+
+2. 在fluid主题中可以搜索`comments`关键词，分别对友情链接与文章页进行评论设置，分别设置`enable`为`true`，`type`为`valine`
+{% codeblock %}
+#---------------------------
+# 文章页
+# Post Page
+#---------------------------
+# 评论插件
+  # Comment plugin
+  comments:
+    enable: true
+    # 指定的插件，需要同时设置对应插件的必要参数
+    # The specified plugin needs to set the necessary parameters at the same time
+    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
+    type: valine
+
+#---------------------------
+# 友链页
+# Links Page
+#---------------------------
+# 评论插件
+  # Comment plugin
+  comments:
+    enable: true
+    # 指定的插件，需要同时设置对应插件的必要参数
+    # The specified plugin needs to set the necessary parameters at the same time
+    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
+    type: valine
+{% endcodeblock %}
+
+3. 此时访问友情链接页与任意博客文章时，在页面底部均可以看到评论区域。如果希望某篇博客关闭评论，可以通过在 `Front-matter` 设置 `comment: bool` 来控制评论开关，或者通过 `comment: 'type'` 来开启指定的评论插件
+{% codeblock %}
+---
+title: Hexo-fluid主题设置统计博客阅读量
+date: 2022-03-14 21:05:19
+comment: false
+tags:
+ - hexo
+ - 博客阅读量
+categories:
+ - hexo
+
+---
+{% endcodeblock %}
