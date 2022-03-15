@@ -4,8 +4,8 @@ date: 2022-01-22 14:20:54
 tags:
  - Qt
  - 动态链接库
-cateogries:
- - Qt
+categories:
+  - Qt
 ---
 
 # 前言
