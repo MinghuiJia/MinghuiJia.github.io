@@ -1,0 +1,605 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Minghui Jia">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题目给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串解码">
+<meta property="og:url" content="http://minghuijia.cn/2022/03/16/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="贾明晖的博客">
+<meta property="og:description" content="题目给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-16T02:54:15.000Z">
+<meta property="article:modified_time" content="2022-03-16T03:23:01.460Z">
+<meta property="article:author" content="Minghui Jia">
+<meta property="article:tag" content="栈操作">
+<meta property="article:tag" content="递归">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>字符串解码 - 贾明晖的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","app_key":"Vc9lrSvCYNMwwDivPuVgadmw","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>贾明晖的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/archive_pic.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="字符串解码">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Minghui Jia
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-16 10:54" pubdate>
+        2022年3月16日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">字符串解码</h1>
+            
+            <div class="markdown-body">
+              <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个经过编码的字符串，返回它解码后的字符串。<br>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
+<ul>
+<li><p>示例1：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs abnf">输入：s <span class="hljs-operator">=</span> <span class="hljs-string">&quot;3[a]2[bc]&quot;</span><br>输出：<span class="hljs-string">&quot;aaabcbc&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>示例2：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">输入：s <span class="hljs-operator">=</span> <span class="hljs-string">&quot;3[a2[c]]&quot;</span><br>输出：<span class="hljs-string">&quot;accaccacc&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>示例3：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">输入：s <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2[abc]3[cd]ef&quot;</span><br>输出：<span class="hljs-string">&quot;abcabccdcdcdef&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>示例4：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">输入：s <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc3[cd]xyz&quot;</span><br>输出：<span class="hljs-string">&quot;abccdcdcdxyz&quot;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;&#x3D; s.length &lt;&#x3D; 30</li>
+<li>s 由小写英文字母、数字和方括号 ‘[]’ 组成</li>
+<li>s 保证是一个 有效 的输入。</li>
+<li>s 中所有整数的取值范围为 [1, 300]</li>
+</ul>
+<p> </p>
+<h1 id="思路-代码"><a href="#思路-代码" class="headerlink" title="思路+代码"></a>思路+代码</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>本题可以采用栈操作解法、递归方法分别完成字符串解码</p>
+<ol>
+<li>栈操作：<br>本题中可能出现括号嵌套的情况，比如 <code>2[a2[bc]]</code>，这种情况下我们可以先转化成 <code>2[abcbc]</code>，在转化成 <code>abcbcabcbc</code>。我们可以把字母、数字和括号看成是独立的 <code>TOKEN</code>，并用栈来维护这些 <code>TOKEN</code>。具体的做法是，遍历这个栈：</li>
+</ol>
+<ul>
+<li>如果当前的字符为数位，解析出一个数字（连续的多个数位）并进栈</li>
+<li>如果当前的字符为字母或者左括号，直接进栈</li>
+<li>如果当前的字符为右括号，开始出栈，一直到左括号出栈，出栈序列反转后拼接成一个字符串，此时取出栈顶的数字（此时栈顶一定是数字），就是这个字符串应该出现的次数，我们根据这个次数和字符串构造出新的字符串并进栈</li>
+</ul>
+<p>重复如上操作，最终将栈中的元素按照从栈底到栈顶的顺序拼接起来，就得到了答案。</p>
+<ol start="2">
+<li>递归从左向右解析字符串：</li>
+</ol>
+<ul>
+<li>如果当前位置为数字位，那么后面一定包含一个用方括号表示的字符串，即属于这种情况：<code>k[...]</code>：<ul>
+<li>我们可以先解析出一个数字，然后解析到了左括号，递归向下解析后面的内容，遇到对应的右括号就返回，此时我们可以根据解析出的数字 <code>xx</code> 解析出的括号里的字符串 <code>x*s</code> </li>
+<li>我们把 <code>k[...]</code> 解析结束后，再次调用递归函数，解析右括号右边的内容。</li>
+</ul>
+</li>
+<li>如果当前位置是字母位，那么我们直接解析当前这个字母，然后递归向下解析这个字母后面的内容。</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><ul>
+<li><p>栈操作1：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function">string <span class="hljs-title">getDigits</span><span class="hljs-params">(string &amp;s, <span class="hljs-type">size_t</span> &amp;ptr)</span> </span>&#123;<br>		string ret = <span class="hljs-string">&quot;&quot;</span>;<br>		<span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(s[ptr])) &#123;<br>			ret.<span class="hljs-built_in">push_back</span>(s[ptr++]);<br>		&#125;<br>		<span class="hljs-keyword">return</span> ret;<br>	&#125;<br><br>	<span class="hljs-function">string <span class="hljs-title">getString</span><span class="hljs-params">(vector &lt;string&gt; &amp;v)</span> </span>&#123;<br>		string ret;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span> &amp;s: v) &#123;<br>			ret += s;<br>		&#125;<br>		<span class="hljs-keyword">return</span> ret;<br>	&#125;<br><br>	<span class="hljs-function">string <span class="hljs-title">decodeString</span><span class="hljs-params">(string s)</span> </span>&#123;<br>		vector &lt;string&gt; stk;<br>		<span class="hljs-type">size_t</span> ptr = <span class="hljs-number">0</span>;<br><br>		<span class="hljs-keyword">while</span> (ptr &lt; s.<span class="hljs-built_in">size</span>()) &#123;<br>			<span class="hljs-type">char</span> cur = s[ptr];<br>			<span class="hljs-keyword">if</span> (<span class="hljs-built_in">isdigit</span>(cur)) &#123;<br>				<span class="hljs-comment">// 获取一个数字并进栈</span><br>				string digits = <span class="hljs-built_in">getDigits</span>(s, ptr);<br>				stk.<span class="hljs-built_in">push_back</span>(digits);<br>			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isalpha</span>(cur) || cur == <span class="hljs-string">&#x27;[&#x27;</span>) &#123;<br>				<span class="hljs-comment">// 获取一个字母并进栈</span><br>				stk.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">string</span>(<span class="hljs-number">1</span>, s[ptr++])); <br>			&#125; <span class="hljs-keyword">else</span> &#123;<br>				++ptr;<br>				vector &lt;string&gt; sub;<br>				<span class="hljs-keyword">while</span> (stk.<span class="hljs-built_in">back</span>() != <span class="hljs-string">&quot;[&quot;</span>) &#123;<br>					sub.<span class="hljs-built_in">push_back</span>(stk.<span class="hljs-built_in">back</span>());<br>					stk.<span class="hljs-built_in">pop_back</span>();<br>				&#125;<br>				<span class="hljs-built_in">reverse</span>(sub.<span class="hljs-built_in">begin</span>(), sub.<span class="hljs-built_in">end</span>());<br>				<span class="hljs-comment">// 左括号出栈</span><br>				stk.<span class="hljs-built_in">pop_back</span>();<br>				<span class="hljs-comment">// 此时栈顶为当前 sub 对应的字符串应该出现的次数</span><br>				<span class="hljs-type">int</span> repTime = <span class="hljs-built_in">stoi</span>(stk.<span class="hljs-built_in">back</span>()); <br>				stk.<span class="hljs-built_in">pop_back</span>();<br>				string t, o = <span class="hljs-built_in">getString</span>(sub);<br>				<span class="hljs-comment">// 构造字符串</span><br>				<span class="hljs-keyword">while</span> (repTime--) t += o; <br>				<span class="hljs-comment">// 将构造好的字符串入栈</span><br>				stk.<span class="hljs-built_in">push_back</span>(t);<br>			&#125;<br>		&#125;<br><br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">getString</span>(stk);<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>栈操作2：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">decodeString</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> s</span>)</span> &#123;<br>		<span class="hljs-built_in">int</span> length = s.length();<br>		<span class="hljs-built_in">string</span> num = <span class="hljs-string">&quot;&quot;</span>;<br>		<span class="hljs-built_in">string</span> words = <span class="hljs-string">&quot;&quot;</span>;<br>		stack&lt;<span class="hljs-built_in">int</span>&gt; s_num;<br>		stack&lt;<span class="hljs-built_in">string</span>&gt; s_c;<br><br>		<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; length; i++)<br>		&#123;<br>			<span class="hljs-keyword">if</span> (s[i] &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; s[i] &lt;= <span class="hljs-string">&#x27;9&#x27;</span>)<br>			&#123;<br>				num += s[i];<br>			&#125;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s[i] &gt;= <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; s[i] &lt;= <span class="hljs-string">&#x27;z&#x27;</span>)<br>			&#123;<br>				words += s[i];<br>			&#125;<br>			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27;[&#x27;</span>)<br>			&#123;<br><br>				s_num.push(atoi(num.c_str()));<br>				num = <span class="hljs-string">&quot;&quot;</span>;<br>				s_c.push(words);<br>				words = <span class="hljs-string">&quot;&quot;</span>;<br>			&#125;<br>			<span class="hljs-keyword">else</span><br>			&#123;<br>				<span class="hljs-built_in">int</span> temp_num = s_num.top();<br>				s_num.pop();<br>				<span class="hljs-built_in">string</span> temp_str = <span class="hljs-string">&quot;&quot;</span>;<br><br>				<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> k = <span class="hljs-number">0</span>; k &lt; temp_num; k++)<br>				&#123;<br>					temp_str += words;<br>				&#125;<br>				words = s_c.top() + temp_str;<br>				s_c.pop();<br><br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> words;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>递归操作：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">string</span> src; <br>	size_t ptr;<br><br>	<span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">getDigits</span>()</span> &#123;<br>		<span class="hljs-built_in">int</span> ret = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span> (ptr &lt; src.size() &amp;&amp; isdigit(src[ptr])) &#123;<br>			ret = ret * <span class="hljs-number">10</span> + src[ptr++] - <span class="hljs-string">&#x27;0&#x27;</span>;<br>		&#125;<br>		<span class="hljs-keyword">return</span> ret;<br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">getString</span>()</span> &#123;<br>		<span class="hljs-keyword">if</span> (ptr == src.size() || src[ptr] == <span class="hljs-string">&#x27;]&#x27;</span>) &#123;<br>			<span class="hljs-comment">// String -&gt; EPS</span><br>			<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>		&#125;<br><br>		<span class="hljs-built_in">char</span> cur = src[ptr]; <span class="hljs-built_in">int</span> repTime = <span class="hljs-number">1</span>;<br>		<span class="hljs-built_in">string</span> ret;<br><br>		<span class="hljs-keyword">if</span> (isdigit(cur)) &#123;<br>			<span class="hljs-comment">// String -&gt; Digits [ String ] String</span><br>			<span class="hljs-comment">// 解析 Digits</span><br>			repTime = getDigits(); <br>			<span class="hljs-comment">// 过滤左括号</span><br>			++ptr;<br>			<span class="hljs-comment">// 解析 String</span><br>			<span class="hljs-built_in">string</span> str = getString(); <br>			<span class="hljs-comment">// 过滤右括号</span><br>			++ptr;<br>			<span class="hljs-comment">// 构造字符串</span><br>			<span class="hljs-keyword">while</span> (repTime--) ret += str; <br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isalpha(cur)) &#123;<br>			<span class="hljs-comment">// String -&gt; Char String</span><br>			<span class="hljs-comment">// 解析 Char</span><br>			ret = <span class="hljs-built_in">string</span>(<span class="hljs-number">1</span>, src[ptr++]);<br>		&#125;<br>		<br>		<span class="hljs-keyword">return</span> ret + getString();<br>	&#125;<br><br>	<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">decodeString</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> s</span>)</span> &#123;<br>		src = s;<br>		ptr = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">return</span> getString();<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>作者：力扣 (LeetCode)<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/leetbook/read/queue-stack/gdwjv/">https://leetcode-cn.com/leetbook/read/queue-stack/gdwjv/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A0%88%E6%93%8D%E4%BD%9C/">栈操作</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%80%92%E5%BD%92/">递归</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/14/Hexo-fluid%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE%E7%BB%9F%E8%AE%A1%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E9%87%8F/">
+                        <span class="hidden-mobile">Hexo-fluid主题设置统计博客阅读量与评论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":null,"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6a8f7ee0eed65b5aecb3525bca5543a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
