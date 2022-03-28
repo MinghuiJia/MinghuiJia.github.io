@@ -209,6 +209,115 @@ int main(int argc, char *argv[])
 {% asset_img step6.png %}
 **重点：C++的vector数据转换成Python的元组或列表形式，首先需要创建对应的Object（PyList_New、PyTuple_New），然后循环赋值（PyList_Append、PyTuple_SetItem），再调用函数之前，需要再用一个元组将数据包装起来，才能成功**
 
+## C++调用Python函数传入列表参数并返回列表参数
 
-更多C++调用Python，[各种参数传递与接收示例](https://blog.csdn.net/dcx_dcx/article/details/104388718?spm=1001.2101.3001.6650.4&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-4.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-4.pc_relevant_default&utm_relevant_index=8)
+1. 定义Python函数，并命名为test13.py
+{% codeblock %}
+def listFuncTest(list1, list2, list3):
+    print(list1)
+    print(list2)
+    print(list3)
+
+    return list1, list3
+
+if __name__=="__main__":
+    lizt1 = [1,2,3]
+    lizt2 = [4,5,6]
+    lizt3 = [6,6,6]
+    new_lizt1, new_lizt2 =listFuncTest(lizt1, lizt2, lizt3)
+    print(new_lizt1)
+    print(new_lizt2)
+{% endcodeblock %}
+
+2. 编写C++代码调用Python函数并获取返回值
+{% codeblock %}
+#include <QtCore/QCoreApplication>
+#include <Python.h>
+#include <iostream>
+using namespace std;
+
+// C++vector转PyObject函数（python list类型）
+PyObject* createList(vector<int> list)
+{
+	PyObject* pyParams = PyList_New(0);           //初始化一个列表
+	for (int i = 0; i < list.size(); i++)
+	{
+		PyList_Append(pyParams, Py_BuildValue("i", list[i]));	//列表添加元素值整数，可以添加不同类型的数据
+	}
+	return pyParams;
+}
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+
+	// 用于测试的vector数据
+	vector<int> nums1({ 1,2,3 });
+	vector<int> nums2({ 9,8,7 });
+	vector<int> nums3({ -1,2,-4 });
+
+	Py_Initialize();	//首。初始化Python解释器
+	if (!Py_IsInitialized())
+	{
+		printf("初始化失败！");
+		return 0;
+	}
+	// 直接执行Python语句
+	PyRun_SimpleString("import sys");
+	PyRun_SimpleString("sys.path.append('./')");//这一步很重要，修改Python路径
+
+	// 调用Python文件中的函数
+	PyObject * pModule = NULL;	//Python模块
+	PyObject * pFunc = NULL;	//Python函数
+	PyObject* args = NULL;		//函数接受的参数
+	PyObject* pRet = NULL;		//函数返回的参数
+
+	pModule = PyImport_ImportModule("test13");					//这里是要调用的文件名
+	pFunc = PyObject_GetAttrString(pModule, "listFuncTest");	//这里是要调用的函数名
+
+	// 将C++的vector转成PyObject类型
+	PyObject* list1 = createList(nums1);
+	PyObject* list2 = createList(nums2);
+	PyObject* list3 = createList(nums3);
+
+	// 多个参数传递到Python需要在外面再加一层tuple包装
+	args = PyTuple_New(3);
+	PyTuple_SetItem(args, 0, list1);
+	PyTuple_SetItem(args, 1, list2);
+	PyTuple_SetItem(args, 2, list3);
+
+	// 调用Python函数并得到函数返回值（PyObject类型返回值）
+	PyObject* pyReturnValue = PyEval_CallObject(pFunc, args);
+
+	// 解析返回的PyObject类型为C++vector类型
+	int size_params = PyTuple_Size(pyReturnValue);
+	for (int i = 0; i < size_params; i++)
+	{
+		PyObject* list_value = PyTuple_GetItem(pyReturnValue, i);
+		int size_list = PyList_Size(list_value);
+		vector<int> result;
+		for (int j = 0; j < size_list; j++)
+		{
+			int res = 0;
+			PyArg_Parse(PyList_GetItem(list_value, j), "i", &res);
+			result.push_back(res);
+		}
+		for (int j = 0; j < result.size(); j++)
+		{
+			cout << result[j] << ",";
+		}
+		cout << endl;
+	}
+	return 0;
+}
+{% endcodeblock %}
+
+3. 运行结果
+{% asset_img step7.png %}
+
+- 上图红色框输出结果为C++ vector数据在调用时作为参数传递到函数后输出的结果
+- 上图黄色框输出结果为Python函数返回的两个list类型数据，在C++中解析后输出的结果
+
+更多C++调用Python：[各种参数传递与接收示例](https://blog.csdn.net/dcx_dcx/article/details/104388718?spm=1001.2101.3001.6650.4&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-4.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-4.pc_relevant_default&utm_relevant_index=8)
 解析参数和构造值官方文档链接：https://docs.python.org/3/c-api/arg.html
+Python官方C API手册：https://docs.python.org/zh-cn/3/c-api/concrete.html
