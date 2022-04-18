@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="贾明晖的博客">
 <meta property="og:description" content="前言在利用Qt进行可视化编程时，某个过于耗时的操作会造成界面卡死现象。例如用户点击界面的Button控件，程序会执行clicked槽函数中的操作，但是槽函数中的操作特别耗时，此时界面处于卡死状态（用户无法进行任何操作，包括拖动界面）。为了解决这一“假死”现象，需要用到多线程。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://minghuijia.cn/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/step1.png">
 <meta property="article:published_time" content="2022-03-13T12:26:06.000Z">
-<meta property="article:modified_time" content="2022-03-13T14:07:55.162Z">
+<meta property="article:modified_time" content="2022-04-18T12:30:29.045Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="Qt可视化编程">
 <meta property="article:tag" content="界面假死">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://minghuijia.cn/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/step1.png">
   
   
   <title>Qt主界面假死解决 - 贾明晖的博客</title>
@@ -290,9 +290,7 @@
 <li>创建定义好的workThread对象worker，move到新线程中</li>
 <li>完成相应的信号与槽的连接<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs dts">void QtWidgetsApplication1::on_pushButton_clicked()<br><span class="hljs-punctuation">&#123;</span><br>	QThread* m_workT<span class="hljs-attr">hread</span> <span class="hljs-operator">=</span> new QThread()<span class="hljs-punctuation">;</span><br>	workThread* <span class="hljs-attr">worker</span> <span class="hljs-operator">=</span> new workThread()<span class="hljs-punctuation">;</span><br>	worker-&gt;moveToThread(m_workThread)<span class="hljs-punctuation">;</span><br>	<br>	<span class="hljs-comment">//建立信号槽连接</span><br>	connect(m_workThread, <span class="hljs-variable">&amp;</span>QThread::started, worker, <span class="hljs-variable">&amp;</span>workThread::start1)<span class="hljs-punctuation">;</span><br>	connect(worker, <span class="hljs-variable">&amp;</span>workThread::workFinished, worker, <span class="hljs-variable">&amp;</span>workThread::deleteLater)<span class="hljs-punctuation">;</span><br>	connect(worker, <span class="hljs-variable">&amp;</span>workThread::workFinished, m_workThread, <span class="hljs-variable">&amp;</span>QThread::quit)<span class="hljs-punctuation">;</span><br>	connect(m_workThread, <span class="hljs-variable">&amp;</span>QThread::finished, m_workThread, <span class="hljs-variable">&amp;</span>QThread::deleteLater)<span class="hljs-punctuation">;</span><br>	worker-&gt;m_bS<span class="hljs-attr">tart</span> <span class="hljs-operator">=</span> <span class="hljs-attr">true</span><span class="hljs-punctuation">;</span><br>	m_workThread-&gt;start()<span class="hljs-punctuation">;</span><br>	worker-&gt;m_bS<span class="hljs-attr">tart</span> <span class="hljs-operator">=</span> <span class="hljs-attr">false</span><span class="hljs-punctuation">;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<p>程序运行截图如下：</p>
-<img src="/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
-<p>此时，程序在执行1000000次循环输出，而可视化界面不会卡死</p>
+<p>程序运行截图如下：<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/step1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>此时，程序在执行1000000次循环输出，而可视化界面不会卡死</p>
 <p><em><strong>注意：因为此时界面和耗时程序执行操作在两个线程，如果后续需要传递数据的话，可以将数据通过信号槽的方式传递</strong></em></p>
 
             </div>

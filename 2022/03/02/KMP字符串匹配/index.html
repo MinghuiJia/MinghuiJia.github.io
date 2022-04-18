@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="贾明晖的博客">
 <meta property="og:description" content="题目给你两个字符串haystack和needle，请你在haystack字符串中找出needle字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回-1说明：当needle是空字符串时应当返回0，与C语言中的strstr()以及Java中的indexOf()定义相符  示例1： 12输入：haystack &#x3D; &quot;hello&quot;, needle &#x3D; &quot;ll&amp;qu">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://minghuijia.cn/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/KMP1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png">
 <meta property="article:published_time" content="2022-03-02T13:36:46.000Z">
-<meta property="article:modified_time" content="2022-03-02T14:40:01.578Z">
+<meta property="article:modified_time" content="2022-04-18T12:28:24.556Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="KMP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://minghuijia.cn/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/KMP1.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png">
   
   
   <title>KMP字符串匹配 - 贾明晖的博客</title>
@@ -325,8 +325,7 @@
 <li>当<code>P[K] != P[j]</code>时，说明<code>P[0]P[1]...P[k-1]P[k] != P[j-k]P[j-k+1]...P[j]</code>，也就是当前模式串中在<code>j + 1</code>所对应字符前没有长度为<code>K + 1</code>的最大公共前后缀，只能寻找更短的最大公共前后缀</li>
 <li>因此，在<code>P[0]P[1]...P[k-1]P[k]</code>中不断递归索引<code>k = next[k]</code>，找到一个字符<code>P[K&#39;]</code>，那么最大公共前后缀长度就是<code>K&#39; + 1</code>S</li>
 </ul>
-<h2 id="解释k-x3D-next-k-能找到长度更短的最大公共前后缀"><a href="#解释k-x3D-next-k-能找到长度更短的最大公共前后缀" class="headerlink" title="解释k &#x3D; next[k]能找到长度更短的最大公共前后缀"></a>解释k &#x3D; next[k]能找到长度更短的最大公共前后缀</h2><img src="/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/KMP1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
-
+<h2 id="解释k-x3D-next-k-能找到长度更短的最大公共前后缀"><a href="#解释k-x3D-next-k-能找到长度更短的最大公共前后缀" class="headerlink" title="解释k &#x3D; next[k]能找到长度更短的最大公共前后缀"></a>解释k &#x3D; next[k]能找到长度更短的最大公共前后缀</h2><p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 <br>
 <br>
 

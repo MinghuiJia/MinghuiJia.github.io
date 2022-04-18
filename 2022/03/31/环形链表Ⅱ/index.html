@@ -16,27 +16,27 @@
   <meta name="author" content="Minghui Jia">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。不允许修改链表。  示例1：  123输入：head &#x3D; [3,2,0,-4], pos &#x3D; 1输出：返回索引为 1 的链表节点解释：链表中有一个环，其尾部连接到第二个节点。  示例2：  123输入：head &#x3D; [1,2], pos &#x3D; 0输出：返回索引为 0 的链表节点解释：链表中有一个环，">
+    <meta name="description" content="题目给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。不允许修改链表。  示例1： 123输入：head &#x3D; [3,2,0,-4], pos &#x3D; 1输出：返回索引为 1 的链表节点解释：链表中有一个环，其尾部连接到第二个节点。  示例2： 123输入：head &#x3D; [1,2], pos &#x3D; 0输出：返回索引为 0 的链表节点解释：链表中有一个环，其尾">
 <meta property="og:type" content="article">
 <meta property="og:title" content="环形链表Ⅱ">
 <meta property="og:url" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/index.html">
 <meta property="og:site_name" content="贾明晖的博客">
-<meta property="og:description" content="题目给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。不允许修改链表。  示例1：  123输入：head &#x3D; [3,2,0,-4], pos &#x3D; 1输出：返回索引为 1 的链表节点解释：链表中有一个环，其尾部连接到第二个节点。  示例2：  123输入：head &#x3D; [1,2], pos &#x3D; 0输出：返回索引为 0 的链表节点解释：链表中有一个环，">
+<meta property="og:description" content="题目给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。不允许修改链表。  示例1： 123输入：head &#x3D; [3,2,0,-4], pos &#x3D; 1输出：返回索引为 1 的链表节点解释：链表中有一个环，其尾部连接到第二个节点。  示例2： 123输入：head &#x3D; [1,2], pos &#x3D; 0输出：返回索引为 0 的链表节点解释：链表中有一个环，其尾">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist.png">
-<meta property="og:image" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist_test2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist_test2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist_test3.png">
 <meta property="og:image" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist_test3.png">
-<meta property="og:image" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist_test3.png">
-<meta property="og:image" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/fast_slow1.png">
-<meta property="og:image" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/fast_slow2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/fast_slow1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/fast_slow2.png">
 <meta property="article:published_time" content="2022-03-31T02:19:14.000Z">
-<meta property="article:modified_time" content="2022-03-31T07:09:35.647Z">
+<meta property="article:modified_time" content="2022-04-18T13:02:05.045Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="链表">
 <meta property="article:tag" content="快慢指针">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist.png">
   
   
   <title>环形链表Ⅱ - 贾明晖的博客</title>
@@ -274,16 +274,13 @@
             <div class="markdown-body">
               <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个链表的头节点 <code>head</code> ，返回链表开始入环的第一个节点。 如果链表无环，则返回 <code>null</code>。<br><strong>不允许修改链表</strong>。</p>
 <ul>
-<li><p>示例1：</p>
-<img src="/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
+<li><p>示例1：<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">head</span> = [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">4</span>], <span class="hljs-attr">pos</span> = <span class="hljs-number">1</span><br>输出：返回索引为 <span class="hljs-number">1</span> 的链表节点<br>解释：链表中有一个环，其尾部连接到第二个节点。<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>示例2：</p>
-<img src="/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist_test2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
+<li><p>示例2：<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist_test2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">head</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], <span class="hljs-attr">pos</span> = <span class="hljs-number">0</span><br>输出：返回索引为 <span class="hljs-number">0</span> 的链表节点<br>解释：链表中有一个环，其尾部连接到第一个节点。<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>示例3：</p>
-<img src="/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist_test3.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
+<li><p>示例3：<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist_test3.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 <!--<div align=center><img src="/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/circularlinkedlist_test3.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class=""></div>-->
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">head</span> = [<span class="hljs-number">1</span>], <span class="hljs-attr">pos</span> = -<span class="hljs-number">1</span><br>输出：返回 <span class="hljs-literal">null</span><br>解释：链表中没有环<br></code></pre></td></tr></table></figure></li>
 </ul>
@@ -302,11 +299,11 @@
 <h2 id="快慢指针实现算法"><a href="#快慢指针实现算法" class="headerlink" title="快慢指针实现算法"></a>快慢指针实现算法</h2><p>通过设定两个指针 <code>fast</code>和 <code>slow</code>，均位于链表头部。<code>slow</code> 指针每次移动一位，<code>fast</code> 指针每次移动两位，如果链表中存在环，则 <code>fast</code> 指针最终会追赶上 <code>slow</code> 指针并在环中相遇</p>
 <p><strong>假设链表有环，会有两种环情况：</strong></p>
 <ul>
-<li>环很大<div align="center"><img src="/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/fast_slow1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class></div></li>
+<li>环很大<div align="center"><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/fast_slow1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload \></div></li>
 </ul>
 <p>假如他们在相遇点相遇了，那么慢指针走过的距离是 <code>a+b</code>，快指针走过的距离就是 <code>a+b+c+b</code>。因为相同时间内快指针走的距离是慢指针的 <code>2</code> 倍，所以有 <code>a+b+c+b = 2*(a+b)</code>，即 <code>a=c</code>，也就是说从相遇点到环的入口和链表的起始点到环的入口，距离是一样的。在相遇点的时候我们可以使用两个指针，一个从相遇点开始，一个从链表头开始，他们每次都走一步，直到他们再次相遇位置，那么这个相遇点就是环的入口。</p>
 <ul>
-<li>环很小<div align="center"><img src="/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/fast_slow2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class></div></li>
+<li>环很小<div align="center"><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/fast_slow2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload \></div></li>
 </ul>
 <p>那么这种情况，快指针在环上转了好几圈了，慢指针才走到环上，假如快指针在环上已经走了 <code>m</code> 圈了，慢指针在环上走了 <code>n</code> 圈，他们最终在环上相遇，那么</p>
 <ul>
