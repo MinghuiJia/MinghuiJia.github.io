@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>基于jsDelivr的CDN图床搭建</title>
+    <link href="/2022/04/18/%E5%9F%BA%E4%BA%8EjsDelivr%E7%9A%84CDN%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/"/>
+    <url>/2022/04/18/%E5%9F%BA%E4%BA%8EjsDelivr%E7%9A%84CDN%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们将个人博客托管在GitHub平台时，网站的访问和图片加载较为缓慢，给读者带来较差的阅读体验。本篇博客<strong>基于图床</strong>的方式，解决了原始的将<strong>本地图片一并上传到GitHub博客的对应仓库</strong>，造成博客<strong>图片加载缓慢</strong>的问题</p><span id="more"></span><h1 id="jsDelivr介绍"><a href="#jsDelivr介绍" class="headerlink" title="jsDelivr介绍"></a>jsDelivr介绍</h1><p>jsDelivr 是一款免费、开源的加速 CDN 公共服务。<code>CDN</code> (Content Delivery Network)全称为内容分发网络，它是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率</p><h1 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h1><p> 配置过程主要包括两个步骤：</p><ul><li>GitHub图片存储仓库创建及本地图片上传</li><li>基于jsDelivr CDN的图片资源引用</li></ul><h2 id="创建存储图片的GitHub仓库并上传本地图片"><a href="#创建存储图片的GitHub仓库并上传本地图片" class="headerlink" title="创建存储图片的GitHub仓库并上传本地图片"></a>创建存储图片的GitHub仓库并上传本地图片</h2><ol><li>在GitHub上创建一个名为 <code>CDN-source</code> 的仓库用于存储图片等资源。仓库名称可以自行定义，下图由于我已经创建了名为 <code>CDN-source</code> 的仓库，提示我该仓库已存在：</li></ol><p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step1.png"></p><ol start="2"><li>想刚创建好的 <code>CDN-source</code> 仓库上传本地的图片</li></ol><ul><li>将需要上传的所有图片放在一个文件夹中，如图中的 <code>D:\myBlog\img</code> ：</li></ul><p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step2.png"></p><ul><li><p>打开 <strong>Git Bash</strong> 进入 <code>D:\myBlog\img</code> 文件夹，执行如下命令完成图片上传：</p>  <figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs awk">git init<span class="hljs-regexp">//</span> 进入项目目录下进行git初始化（可以看到文件夹中生成了.git目录）<br>git remote add origin + 仓库地址 <span class="hljs-regexp">//</span> 添加远程仓库<br>git add .<span class="hljs-regexp">//</span> 添加提交的所有文件<br>git commit -m <span class="hljs-string">&quot;注释&quot;</span><span class="hljs-regexp">//</span> 提交代码<br>git push -u origin master -f <span class="hljs-regexp">//</span> 推送至仓库<br></code></pre></td></tr></table></figure></li><li><p>执行完上述命令后即可在GitHub仓库看到自己上传的本地图片：</p></li></ul><p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step3.png"></p><h2 id="基于jsDelivr-CDN的图片资源引用"><a href="#基于jsDelivr-CDN的图片资源引用" class="headerlink" title="基于jsDelivr CDN的图片资源引用"></a>基于jsDelivr CDN的图片资源引用</h2><p>只需要将访问的资源地址改为如下形式即可：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>cdn.jsdelivr.net<span class="hljs-regexp">/gh/</span>你的用户名<span class="hljs-regexp">/你的仓库名/</span>文件夹名/文件名<br></code></pre></td></tr></table></figure><p>已我当前创建的图片仓库及上传的图片为例，访问链接为：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>cdn.jsdelivr.net<span class="hljs-regexp">/gh/</span>MinghuiJia<span class="hljs-regexp">/CDN-source/</span>themes_pic/index_pic.jpg<br></code></pre></td></tr></table></figure><h1 id="额外补充"><a href="#额外补充" class="headerlink" title="额外补充"></a>额外补充</h1><p>发布不同版本的图片仓库有助于图片资源的管理，下面简单说一下<strong>如何发布以及引用仓库发布版本的图片资源</strong></p><h2 id="仓库发布"><a href="#仓库发布" class="headerlink" title="仓库发布"></a>仓库发布</h2><ol><li>在图片仓库中找到 <code>Draft a new release</code> 进入发布资源页面</li></ol><p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step4.png"></p><ol start="2"><li>填写相关信息：</li></ol><p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step5.png"><br>其中发布版本号①必填，其余②③选填，最后点击 <code>Publish release</code> 完成发布<br><em><strong>注意：版本号可自定义，但是十分重要（资源引用地址填写时有用）</strong></em></p><ol start="3"><li>构建基于jsDelivr的访问资源地址：</li></ol><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>cdn.jsdelivr.net<span class="hljs-regexp">/gh/</span>你的用户名<span class="hljs-regexp">/你的仓库名@发布的版本号/</span>文件夹名/文件名<br></code></pre></td></tr></table></figure><p>已我当前创建的图片仓库及上传的图片为例，访问链接为：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>cdn.jsdelivr.net<span class="hljs-regexp">/gh/</span>MinghuiJia<span class="hljs-regexp">/CDN-source@1.0/</span>themes_pic/index_pic.jpg<br></code></pre></td></tr></table></figure><p><strong>发布版本有助于区分新旧数据、便于资源管理，每次更新图片仓库后都需要发布</strong></p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul><li><a href="https://blog.douchen.life/%E5%9F%BA%E4%BA%8EjsDelivr-Github%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/">基于 jsDelivr + Github 搭建免费图床教程</a></li><li><a href="https://blog.51cto.com/u_13409958/3669893">5步搭建免费图床（CDN图床）再也不用担心网站网速与内存了</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>jsDelivr</tag>
+      
+      <tag>CDN图床</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>环形链表Ⅱ</title>
     <link href="/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/"/>
     <url>/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/</url>

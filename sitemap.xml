@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://minghuijia.cn/2022/04/18/%E5%9F%BA%E4%BA%8EjsDelivr%E7%9A%84CDN%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2022-04-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/</loc>
     
     <lastmod>2022-04-18</lastmod>
@@ -329,6 +338,20 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://minghuijia.cn/tags/jsDelivr/</loc>
+    <lastmod>2022-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/tags/CDN%E5%9B%BE%E5%BA%8A/</loc>
+    <lastmod>2022-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -361,6 +384,13 @@
   
   <url>
     <loc>http://minghuijia.cn/categories/Qt/</loc>
+    <lastmod>2022-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/categories/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2022-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
