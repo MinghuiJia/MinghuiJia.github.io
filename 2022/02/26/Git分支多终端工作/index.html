@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -74,7 +74,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","app_key":"Vc9lrSvCYNMwwDivPuVgadmw","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","app_key":"Vc9lrSvCYNMwwDivPuVgadmw","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -190,7 +190,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/archive_pic.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -277,10 +277,10 @@
 <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>采用hexo d对博客内容上传部署到GitHub的过程，实际上是hexo编译后的文件上传，没有源文件。在上传的GitHub仓库可以看到，上传的文件其实是本地目录中.deploy_git文件夹里面的文件，而source、themes、node_modules等文件都没有同步上传到GitHub。利用git的分支管理可以将源文件上传到GitHub</p>
 <h1 id="分支上传"><a href="#分支上传" class="headerlink" title="分支上传"></a>分支上传</h1><h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><ol>
 <li><p>首先需要登录自己的GitHub主页，找到对应的repositories仓库。然后在按照如下图步骤创建一个hexo分支：</p>
-<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step1.png" srcset="/img/loading.gif" lazyload class>
+<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
 </li>
 <li><p>然后在仓库的setting中，设置新创建的hexo分支为默认分支，如下图操作：</p>
-<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step2.png" srcset="/img/loading.gif" lazyload class>
+<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
 <p>设置为默认分支的目的是为了方便同步，不用指定分支即可更新源码文件</p>
 </li>
 </ol>
@@ -290,13 +290,13 @@
 <p>将GitHub仓库中的文件克隆到本地。此时由于已经设置了默认分支是hexo，所以只克隆hexo分支下的文件</p>
 </li>
 <li><p>然后在本地已经克隆好的文件夹（minghuijia.github.io）中删除<em><strong>.git文件夹</strong></em>以外的所有文件，如下图红色框起来的文件均需要删除</p>
-<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step3.png" srcset="/img/loading.gif" lazyload class>
+<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step3.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
 </li>
 <li><p>将本地之前写博客的源文件<em><strong>除.deploy_git文件夹</strong></em>外全部拷贝过来。<em><strong>注意：拷贝到clone文件夹（minghuijia.github.io）中的源文件应包含一个.gitignore文件，用于忽略一些不需要的文件，如果没有该文件的话，自己创建一个并粘贴如下文字</strong></em>：</p>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-meta">.DS_Store</span><br>Thumbs<span class="hljs-number">.</span><span class="hljs-built_in">db</span><br><span class="hljs-built_in">db</span><span class="hljs-number">.</span>json<br>*.log<br>node_modules/<br><span class="hljs-meta">public</span>/<br><span class="hljs-meta">.deploy</span>*/<br></code></pre></td></tr></table></figure>
-<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step4.png" srcset="/img/loading.gif" lazyload class>
+<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step4.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
 <p>另外需要注意，<em><strong>如果theme是克隆来的，应该将主题文件夹中的.git文件夹删掉</strong></em>。因为git不能嵌套上传，会导致上传时报错，无法上传主题文件，导致配置在其余终端不能用</p>
-<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step5.png" srcset="/img/loading.gif" lazyload class></li>
+<img src="/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/step5.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class></li>
 </ol>
 <h2 id="上传分支"><a href="#上传分支" class="headerlink" title="上传分支"></a>上传分支</h2><p>上述操作完成后，Git Bash在当前文件夹下输入如下指令上传源文件：</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">git <span class="hljs-keyword">add</span> .<br>git commit -m <span class="hljs-string">&quot;add branch&quot;</span><br>git <span class="hljs-keyword">push</span><br></code></pre></td></tr></table></figure>

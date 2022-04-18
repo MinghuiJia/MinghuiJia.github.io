@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -70,7 +70,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","app_key":"Vc9lrSvCYNMwwDivPuVgadmw","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","app_key":"Vc9lrSvCYNMwwDivPuVgadmw","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -186,7 +186,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/archive_pic.jpg') no-repeat center center;
+         style="background: url('https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -291,7 +291,7 @@
 <li>完成相应的信号与槽的连接<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs dts">void QtWidgetsApplication1::on_pushButton_clicked()<br><span class="hljs-punctuation">&#123;</span><br>	QThread* m_workT<span class="hljs-attr">hread</span> <span class="hljs-operator">=</span> new QThread()<span class="hljs-punctuation">;</span><br>	workThread* <span class="hljs-attr">worker</span> <span class="hljs-operator">=</span> new workThread()<span class="hljs-punctuation">;</span><br>	worker-&gt;moveToThread(m_workThread)<span class="hljs-punctuation">;</span><br>	<br>	<span class="hljs-comment">//建立信号槽连接</span><br>	connect(m_workThread, <span class="hljs-variable">&amp;</span>QThread::started, worker, <span class="hljs-variable">&amp;</span>workThread::start1)<span class="hljs-punctuation">;</span><br>	connect(worker, <span class="hljs-variable">&amp;</span>workThread::workFinished, worker, <span class="hljs-variable">&amp;</span>workThread::deleteLater)<span class="hljs-punctuation">;</span><br>	connect(worker, <span class="hljs-variable">&amp;</span>workThread::workFinished, m_workThread, <span class="hljs-variable">&amp;</span>QThread::quit)<span class="hljs-punctuation">;</span><br>	connect(m_workThread, <span class="hljs-variable">&amp;</span>QThread::finished, m_workThread, <span class="hljs-variable">&amp;</span>QThread::deleteLater)<span class="hljs-punctuation">;</span><br>	worker-&gt;m_bS<span class="hljs-attr">tart</span> <span class="hljs-operator">=</span> <span class="hljs-attr">true</span><span class="hljs-punctuation">;</span><br>	m_workThread-&gt;start()<span class="hljs-punctuation">;</span><br>	worker-&gt;m_bS<span class="hljs-attr">tart</span> <span class="hljs-operator">=</span> <span class="hljs-attr">false</span><span class="hljs-punctuation">;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 <p>程序运行截图如下：</p>
-<img src="/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png" srcset="/img/loading.gif" lazyload class>
+<img src="/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/step1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload class>
 <p>此时，程序在执行1000000次循环输出，而可视化界面不会卡死</p>
 <p><em><strong>注意：因为此时界面和耗时程序执行操作在两个线程，如果后续需要传递数据的话，可以将数据通过信号槽的方式传递</strong></em></p>
 
