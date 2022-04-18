@@ -17,15 +17,15 @@ categories:
 # 配置 LeanCloud
 1. 进入LeanCloud官网:https://www.leancloud.cn/ ，注册账号并完成实名认证和邮箱验证
 2. 在LeanCloud主页面按照如下3步骤，进行应用的创建（用户名随意起）
-{% asset_image step1.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step1.png)
 3. 创建Class，按照如下步骤，在`数据存储`->`结构化存储`创建Class
-{% asset_image step2.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step2.png)
 **注意：**
 - 此处创建的 Class 名字必须为Counter，用来保证与NexT主题的修改相兼容，fluid没有限制要求
 - ACL权限选择无限制，避免后续因为权限的问题导致次数统计显示不正常
 4. 在创建的应用设置中寻找AppID与AppKey
-<div align=center>{% asset_img step3.png %}</div>
-<div align=center>{% asset_img step4.png %}</div>
+<div align=center><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step3.png" /></div>
+<div align=center><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step4.png" /></div>
 
 # 修改主题配置文件
 1. 打开fluid的主题配置文件`_config.yml`，把配置 LeanCloud时的AppID与AppKey复制到如下位置，并设置`ignore_local`为`true`，保证在本地启动服务的时候不会记录访问次数
@@ -78,7 +78,7 @@ views:
 
 # 后台管理
 当以上部分配置完成之后，我们的博客页面打开时，便会自动向服务器发送信息，在我们刚才创建的应用test的Counter表中创建数据
-{% asset_image step8.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step8.png)
 ***需要特别说明的是：***
 记录文章访问量的唯一标识符是文章的发布日期和文章的标题，因此要确保这两个数值组合的唯一性，如果你更改了这两个数值，会造成文章阅读数值的清零重计。其中time字段的数值表示某一篇文章的访问量，其他字段的具体作用可以查阅LeanCloud官方文档，最好不要随意修改
 

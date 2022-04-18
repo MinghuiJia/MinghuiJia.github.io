@@ -14,7 +14,7 @@ categories:
 
 # 问题描述
 当用户利用Hexo编写文章引入图片时，常常会出现如下情况：
-{% asset_img step1.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo_Write_The_Article_Images_Cannot_Be_Displayed/step1.png)
 
 # 插件安装与配置
 1. 首先需要安装一个图片路径转换的插件，叫***hexo-asset-image*** 。在Git Bash界面输入命令：
@@ -99,10 +99,10 @@ categories:
 	hexo new draft article2
 {% endcodeblock %}
 在myBlog/source/_posts 或myBlog/source/_drafts 文件夹下会创建article.md文件与article同名文件夹
-{% asset_img step2.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo_Write_The_Article_Images_Cannot_Be_Displayed/step2.png)
 
 2. 将文章需要引用的本地图片，放在同名文章所对应的文件夹下
-{% asset_img step3.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo_Write_The_Article_Images_Cannot_Be_Displayed/step3.png)
 
 3. 在Markdown（文章）文件中需要引入图片的地方添加如下代码：
 {% codeblock %}
@@ -115,10 +115,10 @@ categories:
 	hexo d
 {% endcodeblock %}
 在GitHub主页可以看到，html页面与图片均在同一个文件夹中，文件夹命名与文章.md同名
-{% asset_img step4.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo_Write_The_Article_Images_Cannot_Be_Displayed/step4.png)
 
 5. 此时在浏览器浏览文章，可以发现显示图片的源码，在图片加载路径那里找到了与html在同一个文件夹下的图片
-{% asset_img step5.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo_Write_The_Article_Images_Cannot_Be_Displayed/step5.png)
 它会自动寻找，并补全图片的绝对路径，完成图片加载
 
 # 图片无法加载的可能原因

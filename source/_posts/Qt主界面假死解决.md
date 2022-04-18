@@ -92,7 +92,7 @@ Qt线程的创建有两种方式：
 {% endcodeblock %}
 
 程序运行截图如下：
-{% asset_image step1.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/step1.png)
 此时，程序在执行1000000次循环输出，而可视化界面不会卡死
 
 ***注意：因为此时界面和耗时程序执行操作在两个线程，如果后续需要传递数据的话，可以将数据通过信号槽的方式传递***

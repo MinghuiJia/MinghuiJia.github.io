@@ -112,7 +112,7 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget *parent)
 
 ## 结果展示
 程序运行截图如下：
-{% asset_image step1.png %}
+![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Child_Thread_Updates_The_Main_Thread_Progressbar/step1.png)
 此时，程序在执行1000000次循环输出，可以实时更新处理进度
 
 # 辅助知识
