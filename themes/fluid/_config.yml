@@ -803,7 +803,7 @@ cusdis:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/archive_pic.jpg
+  banner_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
