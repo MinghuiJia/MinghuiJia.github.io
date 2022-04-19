@@ -16,16 +16,16 @@
   <meta name="author" content="Minghui Jia">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给你两个字符串haystack和needle，请你在haystack字符串中找出needle字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回-1说明：当needle是空字符串时应当返回0，与C语言中的strstr()以及Java中的indexOf()定义相符  示例1： 12输入：haystack &#x3D; &quot;hello&quot;, needle &#x3D; &quot;ll&amp;qu">
+    <meta name="description" content="KMP字符串匹配算法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KMP字符串匹配">
 <meta property="og:url" content="http://minghuijia.cn/2022/03/02/KMP%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/index.html">
 <meta property="og:site_name" content="贾明晖的博客">
-<meta property="og:description" content="题目给你两个字符串haystack和needle，请你在haystack字符串中找出needle字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回-1说明：当needle是空字符串时应当返回0，与C语言中的strstr()以及Java中的indexOf()定义相符  示例1： 12输入：haystack &#x3D; &quot;hello&quot;, needle &#x3D; &quot;ll&amp;qu">
+<meta property="og:description" content="KMP字符串匹配算法分析">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png">
 <meta property="article:published_time" content="2022-03-02T13:36:46.000Z">
-<meta property="article:modified_time" content="2022-04-18T12:28:24.556Z">
+<meta property="article:modified_time" content="2022-04-19T02:20:47.101Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="KMP">
 <meta name="twitter:card" content="summary_large_image">
@@ -398,7 +398,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":null,"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
           {
             el: "#valine",
             path: window.location.pathname

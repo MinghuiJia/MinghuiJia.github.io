@@ -16,12 +16,12 @@
   <meta name="author" content="Minghui Jia">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言由于hexo d将个人博客部署在GitHub仓库前需要进行编译，将Markdown等文件进行编译后生成网页并上传，并不包含源文件。因此，当在某个电脑环境下配置好Hexo+GitHub个人博客并进行了一段时间写作后，需要多终端切换工作，这时就需要在Git上进行上传分支">
+    <meta name="description" content="由于hexo d将个人博客部署在GitHub仓库前需要进行编译，将Markdown等文件进行编译后生成网页并上传，并不包含源文件。因此，当在某个电脑环境下配置好Hexo+GitHub个人博客并进行了一段时间写作后，需要多终端切换工作，这时就需要在Git上进行上传分支">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git分支多终端工作">
 <meta property="og:url" content="http://minghuijia.cn/2022/02/26/Git%E5%88%86%E6%94%AF%E5%A4%9A%E7%BB%88%E7%AB%AF%E5%B7%A5%E4%BD%9C/index.html">
 <meta property="og:site_name" content="贾明晖的博客">
-<meta property="og:description" content="前言由于hexo d将个人博客部署在GitHub仓库前需要进行编译，将Markdown等文件进行编译后生成网页并上传，并不包含源文件。因此，当在某个电脑环境下配置好Hexo+GitHub个人博客并进行了一段时间写作后，需要多终端切换工作，这时就需要在Git上进行上传分支">
+<meta property="og:description" content="由于hexo d将个人博客部署在GitHub仓库前需要进行编译，将Markdown等文件进行编译后生成网页并上传，并不包含源文件。因此，当在某个电脑环境下配置好Hexo+GitHub个人博客并进行了一段时间写作后，需要多终端切换工作，这时就需要在Git上进行上传分支">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png">
 <meta property="article:published_time" content="2022-02-26T13:50:52.000Z">
-<meta property="article:modified_time" content="2022-04-18T12:11:47.837Z">
+<meta property="article:modified_time" content="2022-04-19T02:19:52.098Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="多终端">
@@ -271,7 +271,7 @@
             
             <div class="markdown-body">
               <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于hexo d将个人博客部署在GitHub仓库前需要进行编译，将Markdown等文件进行编译后生成网页并上传，并不包含源文件。因此，当在某个电脑环境下配置好Hexo+GitHub个人博客并进行了一段时间写作后，需要多终端切换工作，这时就需要在Git上进行上传分支</p>
-<span id="more"></span>
+<!-- more -->
 
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本篇博客实现了简单在新电脑上配置，并从GitHub上把文件Clone下来就可以实现多终端无缝切换</p>
 <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>采用hexo d对博客内容上传部署到GitHub的过程，实际上是hexo编译后的文件上传，没有源文件。在上传的GitHub仓库可以看到，上传的文件其实是本地目录中.deploy_git文件夹里面的文件，而source、themes、node_modules等文件都没有同步上传到GitHub。利用git的分支管理可以将源文件上传到GitHub</p>
@@ -385,7 +385,7 @@ rsa生成后填到GitHubSSH中，并验证是否成功<figure class="highlight n
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":null,"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
           {
             el: "#valine",
             path: window.location.pathname

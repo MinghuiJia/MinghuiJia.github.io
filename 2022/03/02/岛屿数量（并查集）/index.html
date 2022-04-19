@@ -16,17 +16,17 @@
   <meta name="author" content="Minghui Jia">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给你一个由’1’（陆地）和’0’（水）组成的二维网格，请你计算网格钟岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和&#x2F;或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。  示例1： 1234567输入: grid &#x3D; [	[&quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &amp;quo">
+    <meta name="description" content="岛屿数量算法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="岛屿数量（并查集）">
 <meta property="og:url" content="http://minghuijia.cn/2022/03/02/%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F%EF%BC%88%E5%B9%B6%E6%9F%A5%E9%9B%86%EF%BC%89/index.html">
 <meta property="og:site_name" content="贾明晖的博客">
-<meta property="og:description" content="题目给你一个由’1’（陆地）和’0’（水）组成的二维网格，请你计算网格钟岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和&#x2F;或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。  示例1： 1234567输入: grid &#x3D; [	[&quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &amp;quo">
+<meta property="og:description" content="岛屿数量算法分析">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind2.png">
 <meta property="article:published_time" content="2022-03-02T07:40:48.000Z">
-<meta property="article:modified_time" content="2022-04-18T12:57:35.628Z">
+<meta property="article:modified_time" content="2022-04-19T02:22:49.860Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="并查集">
 <meta property="article:tag" content="LeetCode">
@@ -556,7 +556,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":null,"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
           {
             el: "#valine",
             path: window.location.pathname

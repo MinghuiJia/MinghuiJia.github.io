@@ -16,12 +16,12 @@
   <meta name="author" content="Minghui Jia">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。不允许修改链表。  示例1： 123输入：head &#x3D; [3,2,0,-4], pos &#x3D; 1输出：返回索引为 1 的链表节点解释：链表中有一个环，其尾部连接到第二个节点。  示例2： 123输入：head &#x3D; [1,2], pos &#x3D; 0输出：返回索引为 0 的链表节点解释：链表中有一个环，其尾">
+    <meta name="description" content="环形链表Ⅱ算法分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="环形链表Ⅱ">
 <meta property="og:url" content="http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/index.html">
 <meta property="og:site_name" content="贾明晖的博客">
-<meta property="og:description" content="题目给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。不允许修改链表。  示例1： 123输入：head &#x3D; [3,2,0,-4], pos &#x3D; 1输出：返回索引为 1 的链表节点解释：链表中有一个环，其尾部连接到第二个节点。  示例2： 123输入：head &#x3D; [1,2], pos &#x3D; 0输出：返回索引为 0 的链表节点解释：链表中有一个环，其尾">
+<meta property="og:description" content="环形链表Ⅱ算法分析">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/circularlinkedlist_test2.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/fast_slow1.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Ring_Linked_List_II/fast_slow2.png">
 <meta property="article:published_time" content="2022-03-31T02:19:14.000Z">
-<meta property="article:modified_time" content="2022-04-18T13:02:05.045Z">
+<meta property="article:modified_time" content="2022-04-19T02:23:07.020Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="链表">
@@ -386,7 +386,7 @@
     Fluid.utils.loadComments('#valine', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
         var options = Object.assign(
-          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":null,"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {"appId":"Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz","appKey":"Vc9lrSvCYNMwwDivPuVgadmw","path":"window.location.pathname","placeholder":"欢迎评论","avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
           {
             el: "#valine",
             path: window.location.pathname
