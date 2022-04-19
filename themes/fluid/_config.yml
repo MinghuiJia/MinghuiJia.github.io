@@ -923,6 +923,18 @@ links:
       avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/dc_favicon.png"
     }
     - {
+      title: "Hexo Fluid用户手册",
+      intro: "配置指南|Hexo Fluid用户手册",
+      link: "https://hexo.fluid-dev.com/docs/guide/",
+      avatar: "https://hexo.fluid-dev.com/docs/fluid_hexo.png"
+    }
+    - {
+      title: "WallpaperHub",
+      intro: "高清图片资源",
+      link: "https://wallpaperhub.app/",
+      avatar: "https://wallpaperhub.app/images/logos/WallpaperHub.png"
+    }
+    - {
       title: "Fluid Blog",
       intro: "主题博客",
       link: "https://hexo.fluid-dev.com/",
