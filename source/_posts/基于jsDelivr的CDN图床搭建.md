@@ -1,5 +1,7 @@
 ---
 title: 基于jsDelivr的CDN图床搭建
+excerpt: 我们将个人博客托管在GitHub平台时，网站的访问和图片加载较为缓慢，给读者带来较差的阅读体验。本篇博客基于图床的方式，解决了原始的将本地图片一并上传到GitHub博客的对应仓库，造成博客图片加载缓慢的问题
+index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step1.png
 date: 2022-04-18 21:27:21
 tags:
   - jsDelivr

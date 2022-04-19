@@ -1,5 +1,6 @@
 ---
 title: GDAL分块读写影像
+excerpt: 在使用GDAL读取GeoTiff影像时针对特大的影像，有时为了减少内存消耗，对图像进行分块读取很有必要
 date: 2022-01-20 10:31:56
 tags:
  - GDAL读写

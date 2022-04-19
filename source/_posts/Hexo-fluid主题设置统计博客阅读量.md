@@ -1,5 +1,6 @@
 ---
 title: Hexo-fluid主题设置统计博客阅读量与评论
+excerpt: 本篇博客基于LeanCloud统计博客页面访问次数与访问人数、及文章阅读次数，以及实现文章与友情链接评论功能
 date: 2022-03-14 21:05:19
 comment: false
 tags:
