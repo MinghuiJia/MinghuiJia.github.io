@@ -160,3 +160,6 @@ categories:
 
 ---
 {% endcodeblock %}
+
+# 更多Fluid主题自定义教程（持续更新）
+- Hexo's Fluid 主题私人定制：链接：https://www.erenship.com/posts/40222.html
