@@ -254,8 +254,8 @@ web_analytics:  # 网页访问统计
   # LeanCloud 计数统计，可用于 PV UV 展示，如果 `web_analytics: enable` 没有开启，PV UV 展示只会查询不会增加
   # LeanCloud count statistics, which can be used for PV UV display. If `web_analytics: enable` is false, PV UV display will only query and not increase
   leancloud:
-    app_id: Vzt3r0YhXCDwtHnJmFFyuVug-gzGzoHsz
-    app_key: Vc9lrSvCYNMwwDivPuVgadmw
+    app_id: rus6Tx19t07FrkUwMWtysno7-MdYXbMMI
+    app_key: dYV36HzB2WSCRow89DBqHIGa
     # REST API 服务器地址，国际版不填
     # Only the Chinese mainland users need to set
     server_url: 
@@ -656,7 +656,7 @@ post:
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
-    type: valine
+    type: waline
 
 
 #---------------------------
@@ -739,9 +739,9 @@ valine:
 # Derived from Valine, with self-hosted service and new features
 # See: https://waline.js.org/
 waline:
-  serverURL: ''
+  serverURL: 'https://waline.minghuijia.cn/'
   path: window.location.pathname
-  placeholder:
+  placeholder: 欢迎评论
   meta: ['nick', 'mail', 'link']
   requiredMeta: ['nick']
   lang: 'zh-CN'
@@ -971,7 +971,7 @@ links:
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
-    type: valine
+    type: waline
 
 
 #---------------------------
