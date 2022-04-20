@@ -1,6 +1,7 @@
 ---
 title: Hexo写文章时引用本地图片无法显示
 excerpt: 利用搭建好的博客进行文章编写过程中，文章内容需要展示图片，但引用本地图片时总显示不出来。本篇博客主要解决利用Hexo写文章引用本地图片无法显示的问题
+index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo_Write_The_Article_Images_Cannot_Be_Displayed/index_img4.png
 date: 2022-02-22 21:33:31
 tags:
   - hexo

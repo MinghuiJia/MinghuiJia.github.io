@@ -1,6 +1,7 @@
 ---
 title: KMP字符串匹配
 excerpt: KMP字符串匹配算法分析
+index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png
 date: 2022-03-02 21:36:46
 tags:
  - KMP

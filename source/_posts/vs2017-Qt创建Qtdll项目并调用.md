@@ -1,6 +1,7 @@
 ---
 title: vs2017+Qt创建Qtdll项目并调用
 excerpt: 将一些公用的工具函数可以进行封装并生成Dll，方便组内成员直接调用，提高开发效率
+index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png
 date: 2022-01-22 14:20:54
 tags:
  - Qt

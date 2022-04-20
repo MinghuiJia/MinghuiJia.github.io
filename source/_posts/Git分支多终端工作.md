@@ -2,6 +2,7 @@
 title: Git分支多终端工作
 date: 2022-02-26 21:50:52
 excerpt: 由于hexo d将个人博客部署在GitHub仓库前需要进行编译，将Markdown等文件进行编译后生成网页并上传，并不包含源文件。因此，当在某个电脑环境下配置好Hexo+GitHub个人博客并进行了一段时间写作后，需要多终端切换工作，这时就需要在Git上进行上传分支
+index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Git_Branches_Work_With_Multiple_Terminals/index_img.jpg
 tags:
   - Git
   - 多终端
