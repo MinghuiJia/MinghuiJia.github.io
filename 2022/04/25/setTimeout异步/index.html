@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Minghui Jia">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="setTimeout函数是JavaScript中典型的异步操作，本篇文章从setTimeout入手，加深对同步与异步区别的理解，并且理解JS引擎单线程如何实现异步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="setTimeout异步">
+<meta property="og:url" content="http://minghuijia.cn/2022/04/25/setTimeout%E5%BC%82%E6%AD%A5/index.html">
+<meta property="og:site_name" content="贾明晖的博客">
+<meta property="og:description" content="setTimeout函数是JavaScript中典型的异步操作，本篇文章从setTimeout入手，加深对同步与异步区别的理解，并且理解JS引擎单线程如何实现异步">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async1.png">
+<meta property="article:published_time" content="2022-04-25T11:34:03.000Z">
+<meta property="article:modified_time" content="2022-04-25T12:21:03.606Z">
+<meta property="article:author" content="Minghui Jia">
+<meta property="article:tag" content="闭包">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="异步">
+<meta property="article:tag" content="线程">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async1.png">
+  
+  
+  <title>setTimeout异步 - 贾明晖的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>贾明晖的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="setTimeout异步">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Minghui Jia
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-25 19:34" pubdate>
+        2022年4月25日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">setTimeout异步</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>setTimeout函数是JavaScript中典型的异步操作，本篇文章从setTimeout入手，加深对同步与异步区别的理解，并且理解JS引擎单线程如何实现异步</p>
+<h1 id="同步与异步任务"><a href="#同步与异步任务" class="headerlink" title="同步与异步任务"></a>同步与异步任务</h1><h2 id="同步与异步的区别"><a href="#同步与异步的区别" class="headerlink" title="同步与异步的区别"></a>同步与异步的区别</h2><p>同步与异步操作的判别准则：是否阻碍后续代码的执行</p>
+<ul>
+<li>同步：没有被JS引擎挂起、在主线程上排队执行的任务，<strong>只有前一个任务执行完毕才能执行后一个任务</strong></li>
+<li>异步：被JS引擎放在一边，不进入主线程、而进入任务队列的任务。只有引擎认为某个异步任务可以执行了，该任务（回调函数形式）才会进入主线程执行。</li>
+</ul>
+<div class="note note-info">
+            <p>排在异步任务后面的代码，不用等待异步任务结束就会运行，即异步任务不具备“堵塞”效果</p>
+          </div>
+
+<h2 id="JavaScript单线程模式"><a href="#JavaScript单线程模式" class="headerlink" title="JavaScript单线程模式"></a>JavaScript单线程模式</h2><p>JavaScript是单线程的，但是其运行环境（Chrome浏览器）是多线程的<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<ul>
+<li><p>GUI线程<br>GUI线程就是渲染页面的，他解析HTML和CSS，然后将他们构建成DOM树和渲染树</p>
+</li>
+<li><p>JS引擎线程<br>这个线程就是负责执行JS的主线程，也是上述提到<strong>JS是单线程</strong>所指代的线程。<strong>这个线程跟GUI线程是互斥的</strong>，互斥的原因是JS也可以操作DOM，如果JS线程和GUI线程同时操作DOM，结果就混乱了，不知道到底渲染哪个结果</p>
+</li>
+<li><p>定时器线程<br>前面异步例子的<code>setTimeout</code>就运行在这里，他跟JS主线程不在同一个地方，所以“单线程的JS”能够实现异步。JS的定时器方法还有setInterval，也在这个线程</p>
+</li>
+<li><p>事件触发线程<br>定时器线程其实只是一个计时的作用，他并不会真正执行时间到了的回调，<strong>真正执行这个回调的还是JS主线程</strong>。当时间到了定时器线程会将这个回调事件给到事件触发线程，然后<strong>事件触发线程将它加到任务队列里面去</strong>。最终JS主线程从任务队列取出这个回调执行<br>  <em><strong>注意：事件触发线程不仅仅只会将定时器事件放入任务队列，其他满足条件的事件也是由他负责放进任务队列</strong></em></p>
+</li>
+<li><p>异步HTTP请求线程<br>这个线程负责处理异步的ajax请求，当请求完成后，他也会通知事件触发线程，然后事件触发线程将这个事件放入任务队列给主线程执行</p>
+<div class="note note-warning">
+            <p><strong>所以JS异步的实现靠的就是浏览器的多线程，当他遇到异步API时，就将这个任务交给对应的线程，当这个异步API满足回调条件时，对应的线程又通过事件触发线程将这个事件放入任务队列，然后主线程从任务队列取出事件继续执行</strong></p>
+          </div>
+</li>
+<li><p>任务队列（Event Loop）<br>JavaScript 运行时，除了一个正在运行的主线程，引擎还提供多个任务队列（根据任务的类型，所以有多个）</p>
+<blockquote>
+<ol>
+<li>首先，主线程会去执行所有的同步任务。等到同步任务全部执行完，就会去看任务队列里面有没有事件回调</li>
+<li>如果有，则取出一个回调事件重新进入主线程执行，这时它就变成同步任务了</li>
+<li>等到执行完，下一个异步任务再进入主线程开始执行，一旦任务队列清空，程序就结束执行</li>
+<li>只要同步任务执行完了，引擎就会一遍又一遍地去检查那些挂起来的异步任务，是不是可以进入主线程了。这种循环检查的机制，就叫做<strong>事件循环（Event Loop）</strong></li>
+</ol>
+</blockquote>
+<div class="note note-warning">
+            <p>异步任务的写法通常是回调函数，一旦异步任务重新进入主线程，就会执行对应的回调函数。</p>
+          </div></li>
+</ul>
+<h1 id="setTimeout异步循环中的闭包"><a href="#setTimeout异步循环中的闭包" class="headerlink" title="setTimeout异步循环中的闭包"></a>setTimeout异步循环中的闭包</h1><h2 id="循环中的闭包问题"><a href="#循环中的闭包问题" class="headerlink" title="循环中的闭包问题"></a>循环中的闭包问题</h2><figure class="highlight arcade"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;<br>   setTimeout(<span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(i) <span class="hljs-comment">//&gt;&gt; 6 6 6 6 6</span><br>    &#125;, i * <span class="hljs-number">1000</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上述代码本意是希望：每隔一秒依次输出“1 2 3 4 5”，结果却变成输出“6 6 6 6 6 ”。由于setTimeout是异步操作，JS主线程会执行完同步任务（for循环）。此时根据作用域链上变量查找机制，setTimeout第一个参数的函数体内的i引用了全局作用域里面的i，当for循环完毕后，i的值为6，所以输出了“6 6 6 6 6 ”。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ul>
+<li><p>闭包</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;<br>  (<span class="hljs-keyword">function</span>(<span class="hljs-params">j</span>) &#123;<span class="hljs-comment">//包了一层IIFE形式的函数，这个函数是闭包</span><br>    setTimeout(<span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;<span class="hljs-comment">//函数体内的j引用了外层匿名函数的参数j</span><br>      <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(j); <span class="hljs-comment">//&gt;&gt; 1 2 3 4 5</span><br>    &#125;, j * <span class="hljs-number">1000</span>);<br>  &#125;)(i);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>作用域</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) &#123;<br>   &#123;<br>      <span class="hljs-keyword">let</span> j = i;<br>      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params"></span>) &#123;<br>           <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(j) <span class="hljs-comment">//&gt;&gt; 1 2 3 4 5</span><br>       &#125;, j * <span class="hljs-number">1000</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>用let关键字包上一个作用域，也能和闭包一样解决问题达成目的</p>
+</li>
+<li><p>使用setTimeout第三个参数</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> i=<span class="hljs-number">1</span>; i&lt;=<span class="hljs-number">5</span>; i++) &#123;<br>	setTimeout( <span class="hljs-keyword">function</span> <span class="hljs-title function_">timer</span>(<span class="hljs-params">j</span>) &#123;<br>		<span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>( j );<br>	&#125;, i*<span class="hljs-number">1000</span>, i);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>setTimeout异步：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ceceliahappycoding/p/10772351.html">https://www.cnblogs.com/ceceliahappycoding/p/10772351.html</a><br>面试时高频问到的“闭包”：<a target="_blank" rel="noopener" href="https://coffe1891.gitbook.io/frontend-hard-mode-interview/1/1.2.5">https://coffe1891.gitbook.io/frontend-hard-mode-interview/1/1.2.5</a><br>for循环内调用setTimeout：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010200636/article/details/83061237">https://blog.csdn.net/u010200636/article/details/83061237</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript%E6%95%99%E7%A8%8B/">JavaScript教程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%97%AD%E5%8C%85/">闭包</a>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%BC%82%E6%AD%A5/">异步</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BA%BF%E7%A8%8B/">线程</a>
+                    
+                  </div>
+                
+              </div>
+              <p class="note note-warning">
+				<strong>本文作者: </strong><a href="/">贾明晖</a> <br>
+				<strong>本文链接: </strong><a href="http://minghuijia.cn/2022/04/25/setTimeout%E5%BC%82%E6%AD%A5/">http://minghuijia.cn/2022/04/25/setTimeout%E5%BC%82%E6%AD%A5/</a> <br>
+				<strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+				</p>
+			  
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/25/JavaScript%E9%97%AD%E5%8C%85/">
+                        <span class="hidden-mobile">JavaScript闭包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        new Waline(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          Fluid.plugins.initFancyBox('#waline .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  <div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("01/20/2022 10:31:56");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "本博客已经 🚀&nbsp"+dnum+"&nbsp天";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分钟&nbsp" + snum + "&nbsp秒";
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6a8f7ee0eed65b5aecb3525bca5543a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
