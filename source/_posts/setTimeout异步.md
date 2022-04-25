@@ -2,6 +2,7 @@
 title: setTimeout异步
 date: 2022-04-25 19:34:03
 excerpt: setTimeout函数是JavaScript中典型的异步操作，本篇文章从setTimeout入手，加深对同步与异步区别的理解，并且理解JS引擎单线程如何实现异步
+index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async2.png
 tags:
   - JavaScript
   - 异步
