@@ -187,20 +187,6 @@
   </url>
   
   <url>
-    <loc>http://minghuijia.cn/tags/Git/</loc>
-    <lastmod>2022-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://minghuijia.cn/tags/%E5%A4%9A%E7%BB%88%E7%AB%AF/</loc>
-    <lastmod>2022-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://minghuijia.cn/tags/Python/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -209,6 +195,20 @@
   
   <url>
     <loc>http://minghuijia.cn/tags/%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/tags/Git/</loc>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/tags/%E5%A4%9A%E7%BB%88%E7%AB%AF/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -237,6 +237,20 @@
   
   <url>
     <loc>http://minghuijia.cn/tags/%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD/</loc>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/tags/JavaScripy/</loc>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/tags/%E9%97%AD%E5%8C%85/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -292,20 +306,6 @@
   </url>
   
   <url>
-    <loc>http://minghuijia.cn/tags/%E6%A0%88%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2022-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://minghuijia.cn/tags/%E9%80%92%E5%BD%92/</loc>
-    <lastmod>2022-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://minghuijia.cn/tags/jsDelivr/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -314,6 +314,20 @@
   
   <url>
     <loc>http://minghuijia.cn/tags/CDN%E5%9B%BE%E5%BA%8A/</loc>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/tags/%E6%A0%88%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://minghuijia.cn/tags/%E9%80%92%E5%BD%92/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -334,20 +348,6 @@
   </url>
   
   <url>
-    <loc>http://minghuijia.cn/tags/%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2022-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://minghuijia.cn/tags/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/</loc>
-    <lastmod>2022-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://minghuijia.cn/tags/%E5%9B%9E%E6%BA%AF/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -362,14 +362,14 @@
   </url>
   
   <url>
-    <loc>http://minghuijia.cn/tags/JavaScripy/</loc>
+    <loc>http://minghuijia.cn/tags/%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://minghuijia.cn/tags/%E9%97%AD%E5%8C%85/</loc>
+    <loc>http://minghuijia.cn/tags/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -385,6 +385,13 @@
   </url>
   
   <url>
+    <loc>http://minghuijia.cn/categories/C/</loc>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://minghuijia.cn/categories/hexo/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -392,7 +399,7 @@
   </url>
   
   <url>
-    <loc>http://minghuijia.cn/categories/C/</loc>
+    <loc>http://minghuijia.cn/categories/JavaScript%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -414,13 +421,6 @@
   
   <url>
     <loc>http://minghuijia.cn/categories/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2022-04-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://minghuijia.cn/categories/JavaScript%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
