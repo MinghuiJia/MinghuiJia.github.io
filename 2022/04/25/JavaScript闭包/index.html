@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/JavaScript_Closure/closure1.png">
 <meta property="article:published_time" content="2022-04-25T06:55:07.000Z">
-<meta property="article:modified_time" content="2022-04-25T09:56:50.999Z">
+<meta property="article:modified_time" content="2022-04-25T10:04:14.641Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="JavaScripy">
 <meta property="article:tag" content="闭包">
@@ -297,7 +297,7 @@
 </ul>
 <h2 id="闭包的缺点"><a href="#闭包的缺点" class="headerlink" title="闭包的缺点"></a>闭包的缺点</h2><ul>
 <li>过渡使用闭包会占用过多内存，甚至引起内存泄漏<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">function</span> <span class="hljs-title function_">A</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-built_in">count</span> = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">B</span>(<span class="hljs-params"></span>)&#123;<br>       <span class="hljs-built_in">count</span> ++;<br>       <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">count</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> B;<span class="hljs-comment">//函数B保持了对count的引用</span><br>&#125;<br><span class="hljs-keyword">var</span> b = A();<br>b();<span class="hljs-comment">//&gt;&gt; 1</span><br>b();<span class="hljs-comment">//&gt;&gt; 2</span><br>b();<span class="hljs-comment">//&gt;&gt; 3</span><br></code></pre></td></tr></table></figure>
-上述代码中，当执行完<code>var b = A();</code>之后，A函数的执行环境并没有被销毁，其中<code>count</code>变量被<code>b</code>的函数作用域链所引用，并没有因为函数A执行完毕退出函数调用栈而被JS引擎垃圾回收器回收<div class="note note-warning">
+上述代码中，当执行完<code>var b = A();</code>之后，A函数的执行环境并没有被销毁，其中<code>count</code>变量被<code>b</code>的函数作用域链所引用，并没有因为函数A执行完毕退出函数调用栈而被JS引擎垃圾回收器回收，直至三次调用<code>b()</code>之后<code>b</code>和<code>A</code>的执行环境才会被销毁<div class="note note-warning">
             <p>JavaScript中的垃圾回收规则：如果对象不再被引用，或者对象互相引用形成数据孤岛后且没有被孤岛之外的其他对象引用，那么这些对象将会被JS引擎的垃圾回收器回收；反之，这些对象一直会保存在内存中</p>
           </div>
 由于闭包会引用包含它的外层函数作用域里的变量&#x2F;函数，因此会比其他非闭包形式的函数占用更多内存。即使外层函数执行完毕退出函数调用栈时，由于外层函数作用域中的变量被引用着，并不会被JS引擎的垃圾回收器回收</li>
