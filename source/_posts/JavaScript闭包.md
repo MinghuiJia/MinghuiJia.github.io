@@ -2,6 +2,7 @@
 title: JavaScript闭包
 date: 2022-04-25 14:55:07
 excerpt: 由于JavaScript的闭包（closure）是其最强大的特性，jQuery、Vue.js库都使用了闭包特性来实现，本篇文章总结了一下博主自己对JavaScript闭包特性的学习和理解
+index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/JavaScript_Closure/closure2.png
 tags:
   - JavaScripy
   - 闭包
@@ -37,6 +38,9 @@ func();
 - **闭包也是一种作用域**
 ![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/JavaScript_Closure/closure1.png)
 在chrome浏览器“开发者工具”的控制台可以看到闭包出现在`Scope`一栏，因此闭包也是一种作用域
+{% note info %}
+**闭包是一种作用域，它拷贝了一套外层函数作用域中被访问的参数、变量/函数，这个拷贝都是浅拷贝（引用）**
+{% endnote %}
 
 ## 闭包的优点
 - 访问其他函数内部的变量
@@ -100,7 +104,7 @@ var report = (function() {
 }());
 report('http://www.xxx.com/getClientInfo');//把客户端信息上报数据
 {% endcodeblock %}
-使用闭包把`Image`对象封装起来，就可以解决数据丢失问题
+使用闭包把`Image`对象封装起来，就可以解决数据丢失问题。此时，`imgs`变量被`report`函数作用域链所引用，不会在IIFE函数执行完成后，因为退出函数调用栈而被JS引擎垃圾回收器收回
 
 ## 闭包的缺点
 - 过渡使用闭包会占用过多内存，甚至引起内存泄漏
@@ -118,7 +122,7 @@ b();//>> 1
 b();//>> 2
 b();//>> 3
 {% endcodeblock %}
-上述代码中，当执行完`var b = A();`之后，A函数的执行环境并没有被销毁，其中`count`变量被`b`的函数作用域链所引用，并没有因为函数A执行完毕退出函数调用栈而被JS引擎垃圾回收器回收，直至三次调用`b()`之后`b`和`A`的执行环境才会被销毁
+上述代码中，当执行完`var b = A();`之后，A函数的执行环境并没有被销毁，其中`count`变量被`b`的函数作用域链所引用，并没有因为函数A执行完毕退出函数调用栈而被JS引擎垃圾回收器回收，直至三次调用`b()`之后，**并且删除变量b或赋值为null**，`b`和`A`的执行环境才会被销毁
 {% note warning %}
 JavaScript中的垃圾回收规则：如果对象不再被引用，或者对象互相引用形成数据孤岛后且没有被孤岛之外的其他对象引用，那么这些对象将会被JS引擎的垃圾回收器回收；反之，这些对象一直会保存在内存中
 {% endnote %}
@@ -196,7 +200,7 @@ function sayHello2(name) {
 var say2 = sayHello2("coffe1891");
 say2(); //>> Hello coffe1891
 {% endcodeblock %}
-调用`sayHello2()`函数返回了`sayAlert`，赋值给`say2`
+调用`sayHello2()`函数返回了`sayAlert`，赋值给`say2`。`say2`是一个引用变量，指向一个函数本身，而不是指向一个变量
 
 - 扩展全局对象
 {% codeblock %}
