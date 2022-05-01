@@ -108,7 +108,7 @@ categories:
 
 3. 在Markdown（文章）文件中需要引入图片的地方添加如下代码：
 {% codeblock %}
-	{`% asset_img example.jpg %}
+	{% asset_img example.jpg %}
 {% endcodeblock %}
 
 4. 当上述操作执行完成，并输入如下命令完成博客部署
@@ -139,5 +139,5 @@ categories:
 {% endblockquote %}
 
 4. 相对路径引用的标签插件不当
-把一个 example.jpg 图片放在资源文件夹中，如果通过使用相对路径的常规 markdown 语法 \!\[\](/example.jpg) ，它将不会出现在首页上，需要采用 ***问题解决方法*** 5点中的方式
+把一个 example.jpg 图片放在资源文件夹中，如果通过使用相对路径的常规 markdown 语法 \!\[\](/example.jpg) ，它将不会出现在首页上，需要采用 ***问题解决方法*** 3点中的方式
 

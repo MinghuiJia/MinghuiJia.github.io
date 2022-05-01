@@ -27,7 +27,7 @@ jsDelivr 是一款免费、开源的加速 CDN 公共服务。`CDN` (Content Del
 
 ![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step1.png)
 
-2. 想刚创建好的 `CDN-source` 仓库上传本地的图片
+2. 像刚创建好的 `CDN-source` 仓库上传本地的图片
 - 将需要上传的所有图片放在一个文件夹中，如图中的 `D:\myBlog\img` ：
 
 ![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/CDN_Based_On_jsDelivr/step2.png)
