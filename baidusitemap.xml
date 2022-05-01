@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://minghuijia.cn/2022/04/18/%E5%9F%BA%E4%BA%8EjsDelivr%E7%9A%84CDN%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2022-05-01</lastmod>
+  </url>
+  <url>
+    <loc>http://minghuijia.cn/2022/02/22/Hexo%E5%86%99%E6%96%87%E7%AB%A0%E6%97%B6%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/</loc>
+    <lastmod>2022-05-01</lastmod>
+  </url>
+  <url>
     <loc>http://minghuijia.cn/2022/04/25/setTimeout%E5%BC%82%E6%AD%A5/</loc>
     <lastmod>2022-04-29</lastmod>
   </url>
@@ -14,10 +22,6 @@
   </url>
   <url>
     <loc>http://minghuijia.cn/2022/03/13/Qt%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%81%87%E6%AD%BB%E8%A7%A3%E5%86%B3/</loc>
-    <lastmod>2022-04-20</lastmod>
-  </url>
-  <url>
-    <loc>http://minghuijia.cn/2022/02/22/Hexo%E5%86%99%E6%96%87%E7%AB%A0%E6%97%B6%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/</loc>
     <lastmod>2022-04-20</lastmod>
   </url>
   <url>
@@ -59,10 +63,6 @@
   <url>
     <loc>http://minghuijia.cn/2022/03/31/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%E2%85%A1/</loc>
     <lastmod>2022-04-20</lastmod>
-  </url>
-  <url>
-    <loc>http://minghuijia.cn/2022/04/18/%E5%9F%BA%E4%BA%8EjsDelivr%E7%9A%84CDN%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2022-04-19</lastmod>
   </url>
   <url>
     <loc>http://minghuijia.cn/2022/03/19/C-%E8%B0%83%E7%94%A8Python%E4%BB%A3%E7%A0%81/</loc>
