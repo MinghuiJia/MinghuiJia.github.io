@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Windows下Python2.7安装第三方库编码错误</title>
+    <link href="/2022/05/10/Windows%E4%B8%8BPython2-7%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E7%BC%96%E7%A0%81%E9%94%99%E8%AF%AF/"/>
+    <url>/2022/05/10/Windows%E4%B8%8BPython2-7%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E7%BC%96%E7%A0%81%E9%94%99%E8%AF%AF/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前两天为了使用Python的ArcPy第三方库，我重新在电脑上安装了ArcGIS10.4。由于ArcGIS自带的Python版本是2.7且只装有部分基础库，我的需求是更新Python2.7版本中的Numpy库，用于矩阵乘法的计算。但是在安装过程中出现了编码问题，特此记录一下解决方案</p><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ul><li>我进入到Python2.7安装路径下有exe可执行文件的文件夹下，在cmd命令行中输入：<figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs awk">python -m pip install numpy -i https:<span class="hljs-regexp">//</span>pypi.tuna.tsinghua.edu.cn/simple<br></code></pre></td></tr></table></figure>安装过程中报错<div class="note note-warning">            <p><strong>UnicodeDecodeError: ‘ascii’ codec can’t decode byte 0xcb in position 0:</strong></p>          </div></li></ul><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul><li>报错的原因是与编码有关，pip把下载的临时文件放在用户临时文件中，可能路径中存在中文，导致ascii无法解码</li><li>找到Python2.7目录下下的<code>Lib</code>文件夹中的<code>ntpath.pt</code>文件打开，并找到<code>def join(path, *path):</code>方法，在函数下添加如下两行代码：<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">reload</span><span class="hljs-params">(sys)</span></span>  <br>sys<span class="hljs-selector-class">.setdefaultencoding</span>(<span class="hljs-string">&#x27;gbk&#x27;</span>)<br></code></pre></td></tr></table></figure></li></ul><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>window下安装numpy出现UnicodeDecodeError：<a href="https://blog.csdn.net/wfei101/article/details/76166923">https://blog.csdn.net/wfei101/article/details/76166923</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>install</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Qt读取Excel数据</title>
     <link href="/2022/05/10/Qt%E8%AF%BB%E5%8F%96Excel%E6%95%B0%E6%8D%AE/"/>
     <url>/2022/05/10/Qt%E8%AF%BB%E5%8F%96Excel%E6%95%B0%E6%8D%AE/</url>
