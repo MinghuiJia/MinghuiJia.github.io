@@ -946,19 +946,19 @@ links:
       title: "Fluid Blog",
       intro: "主题博客",
       link: "https://hexo.fluid-dev.com/",
-      avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon.png"
+      avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_old.png"
     }
     - {
       title: "Fluid Docs",
       intro: "主题使用指南",
       link: "https://hexo.fluid-dev.com/docs/",
-      avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon.png"
+      avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_old.png"
     }
     - {
       title: "Fluid Repo",
       intro: "主题 GitHub 仓库",
       link: "https://github.com/fluid-dev/hexo-theme-fluid",
-      avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon.png"
+      avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_old.png"
     }
     
 
