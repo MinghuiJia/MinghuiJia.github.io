@@ -57,7 +57,7 @@ code:
       # 在链接中挑选 style 填入
       # Select a style in the link
       # See: https://highlightjs.org/static/demo/
-      style: "Github Gist"
+      style: "Googlecode"
 
       # 是否根据 style 改变代码背景色（如果 style 是深色背景别忘了开启此项）
       # If true, the code background will change color based on the style (If style has a dark background, don't forget to true)
@@ -923,6 +923,12 @@ links:
       intro: "本科室友（前端大佬）",
       link: "https://blog.douchen.life/",
       avatar: "https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/dc_favicon.png"
+    }
+    - {
+      title: "邵子轩",
+      intro: "研究生同门（全方面综合发展人才）",
+      link: "https://s-shao.github.io/",
+      avatar: "https://s-shao.github.io/img/avatar.png"
     }
     - {
       title: "Hexo Fluid用户手册",
