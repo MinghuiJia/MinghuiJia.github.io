@@ -928,7 +928,7 @@ links:
       title: "邵子轩",
       intro: "研究生同门（全方面综合发展人才）",
       link: "https://s-shao.github.io/",
-      avatar: "https://s-shao.github.io/img/avatar.png"
+      avatar: "https://cdn.jsdelivr.net/gh/s-shao/CDN-source/%E5%8D%9A%E5%AE%A2%E4%B8%BB%E4%BD%93%E9%85%8D%E5%9B%BE/avatar.jpg"
     }
     - {
       title: "Hexo Fluid用户手册",
