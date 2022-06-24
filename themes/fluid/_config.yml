@@ -931,6 +931,12 @@ links:
       avatar: "https://cdn.jsdelivr.net/gh/s-shao/CDN-source/%E5%8D%9A%E5%AE%A2%E4%B8%BB%E4%BD%93%E9%85%8D%E5%9B%BE/avatar.jpg"
     }
     - {
+      title: "董贞宪",
+      intro: "本科隔壁室友（后端大佬）",
+      link: "https://www.dongzhenxian.com/",
+      avatar: "https://fastly.jsdelivr.net/gh/Xe-Persistent/CDN-source/image/background/avatar.webp"
+    }
+    - {
       title: "Hexo Fluid用户手册",
       intro: "配置指南|Hexo Fluid用户手册",
       link: "https://hexo.fluid-dev.com/docs/guide/",
