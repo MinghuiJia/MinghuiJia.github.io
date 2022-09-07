@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="icon" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,33 +23,33 @@
 <meta property="og:site_name" content="贾明晖的博客">
 <meta property="og:description" content="最近在学习CSS样式的浮动属性时，了解到浮动带来好处的同时也会产生一定的负作用，本篇博客针对清浮动方案进行总结并谈谈自己的理解">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat_index.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat_index.png">
 <meta property="article:published_time" content="2022-05-14T08:23:07.000Z">
-<meta property="article:modified_time" content="2022-05-14T09:38:56.523Z">
+<meta property="article:modified_time" content="2022-09-07T02:19:19.001Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat_index.png">
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat_index.png">
   
   
   <title>清浮动 - 贾明晖的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
+      <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
@@ -69,7 +69,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -185,7 +185,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
+         style="background: url('https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -301,7 +301,7 @@
 造成这样的原因是<font color="#dc143c" style="font-weight:bolder">father</font>元素高度塌陷，此时它的高度为0，如下图①②处可以看到，此时<font color="#dc143c" style="font-weight:bolder">father</font>的高度为0，因此当<font color="#dc143c" style="font-weight:bolder">brother<font>会自动顶到页面顶部
 </font></font></div>
 
-<p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<p><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat1.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul>
 <li><p>设置父元素的高度</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-class">.father</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -315,7 +315,7 @@
 <li><p>在父元素种设置溢出</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-class">.father</span> &#123;</span><br><span class="language-css">        <span class="hljs-comment">/* height: 200px; */</span></span><br><span class="language-css">        <span class="hljs-attribute">overflow</span>: hidden;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<p>上述四种方法均可以实现浮动清除效果，效果图如下：<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>此时父元素的高度也<font color="#dc143c"><strong>被撑起</strong></font>变为了200px</p>
+<p>上述四种方法均可以实现浮动清除效果，效果图如下：<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Clear_Float/clearFloat2.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>此时父元素的高度也<font color="#dc143c"><strong>被撑起</strong></font>变为了200px</p>
 <h1 id="为何设置overflow-hidden可以清浮动"><a href="#为何设置overflow-hidden可以清浮动" class="headerlink" title="为何设置overflow:hidden可以清浮动"></a>为何设置overflow:hidden可以清浮动</h1><h2 id="BFC概念"><a href="#BFC概念" class="headerlink" title="BFC概念"></a>BFC概念</h2><p><font color="#dc143c"><strong>BFC（block formatting context）</strong></font>，名为<strong>块级格式化上下文</strong><br>以下情况会触发BFC：</p>
 <ul>
 <li><html>根元素</html></li>
@@ -402,9 +402,9 @@
   <div id="waline"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
+      Fluid.utils.createScript('https://gcore.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
+          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://gcore.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
           {
             el: '#waline',
             path: window.location.pathname
@@ -548,8 +548,8 @@
 
   <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  <script  src="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -560,8 +560,8 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -583,16 +583,16 @@
 
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
   
   
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+    <script defer src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
   
 
 
@@ -602,7 +602,7 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://gcore.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -655,7 +655,7 @@
       };
     </script>
 
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+    <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
 
   
 

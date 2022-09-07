@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="icon" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,34 +23,34 @@
 <meta property="og:site_name" content="贾明晖的博客">
 <meta property="og:description" content="将一些公用的工具函数可以进行封装并生成Dll，方便组内成员直接调用，提高开发效率">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png">
 <meta property="article:published_time" content="2022-01-22T06:20:54.000Z">
-<meta property="article:modified_time" content="2022-04-20T07:33:04.964Z">
+<meta property="article:modified_time" content="2022-09-07T02:15:24.146Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="Qt">
 <meta property="article:tag" content="动态链接库">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png">
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png">
   
   
   <title>vs2017+Qt创建Qtdll项目并调用 - 贾明晖的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
+      <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
@@ -70,7 +70,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -186,7 +186,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
+         style="background: url('https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -270,24 +270,24 @@
 <!-- more -->
 
 <h1 id="创建Qtdll项目"><a href="#创建Qtdll项目" class="headerlink" title="创建Qtdll项目"></a>创建Qtdll项目</h1><ol>
-<li><p>按照如下图方式在 vs2017 中创建一个Qtdll项目<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>项目创建成功后会自动生成两个.h文件和一个.cpp文件如下图。<strong>此外刚创建项目后include部分会报错，需要增加两行代码<code>#include &lt;iostream&gt;</code>;<code>using namespcae std;</code></strong><br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<li><p>按照如下图方式在 vs2017 中创建一个Qtdll项目<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>项目创建成功后会自动生成两个.h文件和一个.cpp文件如下图。<strong>此外刚创建项目后include部分会报错，需要增加两行代码<code>#include &lt;iostream&gt;</code>;<code>using namespcae std;</code></strong><br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step2.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
 <li><p>在创建的Qtdll项目中编写测试函数（求和函数）</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">class</span> QTCLASSLIBRARY1_EXPORT QtClassLibrary1<br>&#123;<br>public:<br>	<span class="hljs-constructor">QtClassLibrary1()</span>;<br>	<span class="hljs-built_in">int</span> <span class="hljs-constructor">Add(<span class="hljs-params">int</span> <span class="hljs-params">x</span>, <span class="hljs-params">int</span> <span class="hljs-params">y</span>)</span>;<br>&#125;;<br><br><span class="hljs-built_in">int</span> QtClassLibrary1::<span class="hljs-constructor">Add(<span class="hljs-params">int</span> <span class="hljs-params">x</span>, <span class="hljs-params">int</span> <span class="hljs-params">y</span>)</span><br>&#123;<br>	return x + y;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>在vs里面的解决方案资源管理器栏内右键点击<code>解决方案</code>，选择<code>生成解决方案</code>，成功后会看到如下界面<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step3.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>同时在Qtdll项目<code>x64\Debug</code>路径下可以看到生成的文件（.dll与.Lib）<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step4.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<li><p>在vs里面的解决方案资源管理器栏内右键点击<code>解决方案</code>，选择<code>生成解决方案</code>，成功后会看到如下界面<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step3.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>同时在Qtdll项目<code>x64\Debug</code>路径下可以看到生成的文件（.dll与.Lib）<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step4.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
 </ol>
 <h1 id="创建调用Qtdll的项目"><a href="#创建调用Qtdll的项目" class="headerlink" title="创建调用Qtdll的项目"></a>创建调用Qtdll的项目</h1><ol>
-<li><p>为了方便期间，创建一个QtConsoleApplication项目对生成的Qtdll进行调用<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step5.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<li><p>为了方便期间，创建一个QtConsoleApplication项目对生成的Qtdll进行调用<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step5.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
-<li><p>将Qtdll项目的中的两个.h文件（<code>QtClassLibrary1.h</code>,<code>qtclasslibrary1_global.h</code>）以及.lib文件（<code>QtClassLibrary1.lib</code>）移动到QtConsoleApplication项目的如下图位置<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step6.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<li><p>将Qtdll项目的中的两个.h文件（<code>QtClassLibrary1.h</code>,<code>qtclasslibrary1_global.h</code>）以及.lib文件（<code>QtClassLibrary1.lib</code>）移动到QtConsoleApplication项目的如下图位置<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step6.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
-<li><p>将Qtdll项目的中的.dll文件（<code>QtClassLibrary1.dll</code>）移动到QtConsoleApplication项目的如下图位置<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step7.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<li><p>将Qtdll项目的中的.dll文件（<code>QtClassLibrary1.dll</code>）移动到QtConsoleApplication项目的如下图位置<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step7.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
 <li><p>在QtConsoleApplication项目中添加头文件（<code>QtClassLibrary1.h</code>,<code>qtclasslibrary1_global.h</code>）与lib文件（<code>QtClassLibrary1.lib</code>），并调用Dll</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;QtCore/QCoreApplication&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;QtClassLibrary1.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;qtclasslibrary1_global.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;qdebug.h&quot;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> comment(lib,<span class="hljs-string">&quot;QtClassLibrary1.lib&quot;</span>)</span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> execution_character_set(<span class="hljs-string">&quot;utf-8&quot;</span>)</span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-function">QCoreApplication <span class="hljs-title">a</span><span class="hljs-params">(argc, argv)</span></span>;<br>	QtClassLibrary1 dll;<br>	<span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;加法&quot;</span> &lt;&lt; dll.<span class="hljs-built_in">Add</span>(<span class="hljs-number">56</span>, <span class="hljs-number">45</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step8.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<p><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step8.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
 </ol>
 <h1 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h1><ol>
@@ -369,9 +369,9 @@
   <div id="waline"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
+      Fluid.utils.createScript('https://gcore.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
+          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://gcore.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
           {
             el: '#waline',
             path: window.location.pathname
@@ -515,8 +515,8 @@
 
   <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  <script  src="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -527,8 +527,8 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -550,16 +550,16 @@
 
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
   
   
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+    <script defer src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
   
 
 
@@ -569,7 +569,7 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://gcore.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -622,7 +622,7 @@
       };
     </script>
 
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+    <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
 
   
 

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="icon" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,34 +23,34 @@
 <meta property="og:site_name" content="贾明晖的博客">
 <meta property="og:description" content="岛屿数量算法分析">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind2.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind2.png">
 <meta property="article:published_time" content="2022-03-02T07:40:48.000Z">
-<meta property="article:modified_time" content="2022-04-20T07:30:53.164Z">
+<meta property="article:modified_time" content="2022-09-07T02:17:03.921Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="并查集">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind2.png">
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind2.png">
   
   
   <title>岛屿数量（并查集） - 贾明晖的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
+      <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
@@ -70,7 +70,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -186,7 +186,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
+         style="background: url('https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -291,7 +291,7 @@
 <li>思路：扫描整个二维网格，如果该位置为“1”，则将其与相邻四个方向上的“1”在并查集中进行合并，最终岛屿的数量就是并查集（子集或连通分量）的数量<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs mel">class Solution &#123;<br>public:<br>    <span class="hljs-keyword">int</span> numIslands(<span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">vector</span>&lt;char&gt;&gt;&amp; <span class="hljs-keyword">grid</span>) &#123;<br>        <span class="hljs-keyword">int</span> rows = <span class="hljs-keyword">grid</span>.<span class="hljs-keyword">size</span>();<br>        <span class="hljs-keyword">int</span> cols = <span class="hljs-keyword">grid</span>[<span class="hljs-number">0</span>].<span class="hljs-keyword">size</span>();<br>        UnionFind uf(<span class="hljs-keyword">grid</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>; r &lt; rows; r++)<br>        &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> c = <span class="hljs-number">0</span>; c &lt; cols; c++)<br>            &#123;<br>                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">grid</span>[r][c] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                &#123;<br>                    <span class="hljs-keyword">grid</span>[r][c] = <span class="hljs-string">&#x27;0&#x27;</span>;<br>                    <span class="hljs-keyword">if</span> (r<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">grid</span>[r<span class="hljs-number">-1</span>][c] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, (r<span class="hljs-number">-1</span>) * cols + c);<br>                    <span class="hljs-keyword">if</span> (r+<span class="hljs-number">1</span> &lt; rows &amp;&amp; <span class="hljs-keyword">grid</span>[r+<span class="hljs-number">1</span>][c] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, (r+<span class="hljs-number">1</span>) * cols + c);<br>                    <span class="hljs-keyword">if</span> (c<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">grid</span>[r][c<span class="hljs-number">-1</span>] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, r * cols + c - <span class="hljs-number">1</span>);<br>                    <span class="hljs-keyword">if</span> (c+<span class="hljs-number">1</span> &lt; cols &amp;&amp; <span class="hljs-keyword">grid</span>[r][c+<span class="hljs-number">1</span>] == <span class="hljs-string">&#x27;1&#x27;</span>)<br>                        uf.unite(r * cols + c, r * cols + c + <span class="hljs-number">1</span>);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> uf.getCount();<br>    &#125;;<br>&#125;;<br></code></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="辅助理解资料"><a href="#辅助理解资料" class="headerlink" title="辅助理解资料"></a>辅助理解资料</h1><h2 id="按秩合并"><a href="#按秩合并" class="headerlink" title="按秩合并"></a>按秩合并</h2><ul>
-<li>按秩合并可以通过减少森林的深度，来节约之后搜索的时间<br>例如有如下两个树型集合：<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>将A集合合并到D集合，合并后树的<strong>深度是3</strong>，而将D合并到A上，<strong>深度就变为4</strong>。因此在并查集类的合并方法中，只有当两个集合树的深度一样时，将两者合并后深度会+1，其余情况合并后深度为A、B集合深度的较大者，即：max(A,B)<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
+<li>按秩合并可以通过减少森林的深度，来节约之后搜索的时间<br>例如有如下两个树型集合：<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind1.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>将A集合合并到D集合，合并后树的<strong>深度是3</strong>，而将D合并到A上，<strong>深度就变为4</strong>。因此在并查集类的合并方法中，只有当两个集合树的深度一样时，将两者合并后深度会+1，其余情况合并后深度为A、B集合深度的较大者，即：max(A,B)<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Number_Of_Islands(Union_Set)/UnionFind2.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
 </ul>
 <h2 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h2><ul>
 <li>路径压缩是为了防止出现树的不平衡状态，即为单分支树。采用路径压缩，只需要n(1)的时间复杂度即可找到父节点</li>
@@ -552,9 +552,9 @@
   <div id="waline"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
+      Fluid.utils.createScript('https://gcore.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
+          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://gcore.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
           {
             el: '#waline',
             path: window.location.pathname
@@ -698,8 +698,8 @@
 
   <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  <script  src="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -710,8 +710,8 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -733,16 +733,16 @@
 
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
   
   
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+    <script defer src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
   
 
 
@@ -752,7 +752,7 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://gcore.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -805,7 +805,7 @@
       };
     </script>
 
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+    <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
 
   
 

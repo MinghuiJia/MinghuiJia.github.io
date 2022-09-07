@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
+  <link rel="icon" href="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/favicon_new.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,41 +23,41 @@
 <meta property="og:site_name" content="贾明晖的博客">
 <meta property="og:description" content="Python强大的第三方库有助于方法建模。而当我们需要采用C++开发软件时，没有相应的C++库或开源代码，使得我们不得不在软件开发过程中调用部分Python代码">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step6.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step7.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step6.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step7.png">
 <meta property="article:published_time" content="2022-03-19T13:25:38.000Z">
-<meta property="article:modified_time" content="2022-04-19T02:19:13.339Z">
+<meta property="article:modified_time" content="2022-09-07T02:09:28.397Z">
 <meta property="article:author" content="Minghui Jia">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="混合编程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png">
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png">
   
   
   <title>C++调用Python代码 - 贾明晖的博客</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/hint.css@2/hint.min.css" />
 
   
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
+      <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/highlight.js@10/styles/googlecode.min.css" />
     
   
 
   
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+    <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
@@ -77,7 +77,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"minghuijia.cn","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"6a8f7ee0eed65b5aecb3525bca5543a5","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"rus6Tx19t07FrkUwMWtysno7-MdYXbMMI","app_key":"dYV36HzB2WSCRow89DBqHIGa","server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -193,7 +193,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
+         style="background: url('https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/archive_pic.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -285,9 +285,9 @@
 <li>最后用一句，把参数传给调用函数并实际运行：<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">PyEval_CallObject(<span class="hljs-params">pFunc</span>, <span class="hljs-params">pArg</span>)</span>;<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="创建C-项目并完成环境和库配置"><a href="#创建C-项目并完成环境和库配置" class="headerlink" title="创建C++项目并完成环境和库配置"></a>创建C++项目并完成环境和库配置</h2><ul>
-<li>包含目录：在创建好的C++项目，<code>右击项目-&gt;属性-&gt;C/C++/常规</code>，将安装Python路径下的<code>\include</code>目录添加进去<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
-<li>附加库目录：在创建好的C++项目，<code>右击项目-&gt;属性-&gt;链接器-&gt;常规-&gt;附加库目录</code>，将安装Python路径下的<code>\libs</code>目录添加进去<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
-<li>附加依赖项：在创建好的C++项目，<code>右击项目-&gt;属性-&gt;链接器-&gt;输入-&gt;附加依赖库</code>，在<strong>debug</strong>下输入<code>python36.lib</code>，在<strong>release</strong>下输入<code>python36_d.lib</code>（不同版本Python最后数字不一样，自行修改）<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
+<li>包含目录：在创建好的C++项目，<code>右击项目-&gt;属性-&gt;C/C++/常规</code>，将安装Python路径下的<code>\include</code>目录添加进去<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
+<li>附加库目录：在创建好的C++项目，<code>右击项目-&gt;属性-&gt;链接器-&gt;常规-&gt;附加库目录</code>，将安装Python路径下的<code>\libs</code>目录添加进去<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
+<li>附加依赖项：在创建好的C++项目，<code>右击项目-&gt;属性-&gt;链接器-&gt;输入-&gt;附加依赖库</code>，在<strong>debug</strong>下输入<code>python36.lib</code>，在<strong>release</strong>下输入<code>python36_d.lib</code>（不同版本Python最后数字不一样，自行修改）<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
 </ul>
 <p><em><strong>注意：在Python安装路径下的<code>\libs</code>文件夹中可能只存在python36.lib而没有python36_d.lib，此时需要复制一份python36.lib，并重命名为python36_d.lib，此外安装的Python是32位与64位，要与C++项目的环境配置匹配</strong></em></p>
 <h2 id="C-调用Python函数并传入参数（参数为简单类型）"><a href="#C-调用Python函数并传入参数（参数为简单类型）" class="headerlink" title="C++调用Python函数并传入参数（参数为简单类型）"></a>C++调用Python函数并传入参数（参数为简单类型）</h2><p>C++调用Python实现成功的前提是，此Python文件可以正常运行</p>
@@ -307,7 +307,7 @@
 </ul>
 <p><strong>注意：PyImport_ImportModule，该函数似乎只能用相对路径，且PyImport_ImportModule函数传入的参数不能加”.py“</strong></p>
 <ol start="3">
-<li>运行结果<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
+<li>运行结果<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></li>
 </ol>
 <h2 id="C-调用Python函数并传入参数（参数为列表类型）"><a href="#C-调用Python函数并传入参数（参数为列表类型）" class="headerlink" title="C++调用Python函数并传入参数（参数为列表类型）"></a>C++调用Python函数并传入参数（参数为列表类型）</h2><ol>
 <li><p>定义Python函数，并命名为test12.py</p>
@@ -319,9 +319,9 @@
 </li>
 </ol>
 <ul>
-<li><p>console输出结果展示：<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>可见在Python代码中的print可以在C++的console输出展示</p>
+<li><p>console输出结果展示：<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload><br>可见在Python代码中的print可以在C++的console输出展示</p>
 </li>
-<li><p>生成Excel展示<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step6.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<li><p>生成Excel展示<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step6.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
 </ul>
 <p><strong>重点：C++的vector数据转换成Python的元组或列表形式，首先需要创建对应的Object（PyList_New、PyTuple_New），然后循环赋值（PyList_Append、PyTuple_SetItem），再调用函数之前，需要再用一个元组将数据包装起来，才能成功</strong></p>
@@ -332,7 +332,7 @@
 <li><p>编写C++代码调用Python函数并获取返回值</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">#<span class="hljs-keyword">include</span> &lt;QtCore/QCoreApplication&gt;<br>#<span class="hljs-keyword">include</span> &lt;<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Python</span>.</span></span>h&gt;<br>#<span class="hljs-keyword">include</span> &lt;iostream&gt;<br>using namespace std;<br><br><span class="hljs-comment">// C++vector转PyObject函数（python list类型）</span><br>PyObject* create<span class="hljs-constructor">List(<span class="hljs-params">vector</span>&lt;<span class="hljs-params">int</span>&gt; <span class="hljs-params">list</span>)</span><br>&#123;<br>	PyObject* pyParams = <span class="hljs-constructor">PyList_New(0)</span>;           <span class="hljs-comment">//初始化一个列表</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">list</span>.size<span class="hljs-literal">()</span>; i++)<br>	&#123;<br>		<span class="hljs-constructor">PyList_Append(<span class="hljs-params">pyParams</span>, Py_BuildValue(<span class="hljs-string">&quot;i&quot;</span>, <span class="hljs-params">list</span>[<span class="hljs-params">i</span>])</span>);	<span class="hljs-comment">//列表添加元素值整数，可以添加不同类型的数据</span><br>	&#125;<br>	return pyParams;<br>&#125;<br><br><span class="hljs-built_in">int</span> main(<span class="hljs-built_in">int</span> argc, <span class="hljs-built_in">char</span> *argv<span class="hljs-literal">[]</span>)<br>&#123;<br>    QCoreApplication a(argc, argv);<br><br>	<span class="hljs-comment">// 用于测试的vector数据</span><br>	vector&lt;<span class="hljs-built_in">int</span>&gt; nums1(&#123; <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> &#125;);<br>	vector&lt;<span class="hljs-built_in">int</span>&gt; nums2(&#123; <span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span> &#125;);<br>	vector&lt;<span class="hljs-built_in">int</span>&gt; nums3(&#123; -<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,-<span class="hljs-number">4</span> &#125;);<br><br>	<span class="hljs-constructor">Py_Initialize()</span>;	<span class="hljs-comment">//首。初始化Python解释器</span><br>	<span class="hljs-keyword">if</span> (!<span class="hljs-constructor">Py_IsInitialized()</span>)<br>	&#123;<br>		printf(<span class="hljs-string">&quot;初始化失败！&quot;</span>);<br>		return <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-comment">// 直接执行Python语句</span><br>	<span class="hljs-constructor">PyRun_SimpleString(<span class="hljs-string">&quot;import sys&quot;</span>)</span>;<br>	<span class="hljs-constructor">PyRun_SimpleString(<span class="hljs-string">&quot;sys.path.append(&#x27;./&#x27;)&quot;</span>)</span>;<span class="hljs-comment">//这一步很重要，修改Python路径</span><br><br>	<span class="hljs-comment">// 调用Python文件中的函数</span><br>	PyObject<span class="hljs-operator"> * </span>pModule = NULL;	<span class="hljs-comment">//Python模块</span><br>	PyObject<span class="hljs-operator"> * </span>pFunc = NULL;	<span class="hljs-comment">//Python函数</span><br>	PyObject* args = NULL;		<span class="hljs-comment">//函数接受的参数</span><br>	PyObject* pRet = NULL;		<span class="hljs-comment">//函数返回的参数</span><br><br>	pModule = <span class="hljs-constructor">PyImport_ImportModule(<span class="hljs-string">&quot;test13&quot;</span>)</span>;					<span class="hljs-comment">//这里是要调用的文件名</span><br>	pFunc = <span class="hljs-constructor">PyObject_GetAttrString(<span class="hljs-params">pModule</span>, <span class="hljs-string">&quot;listFuncTest&quot;</span>)</span>;	<span class="hljs-comment">//这里是要调用的函数名</span><br><br>	<span class="hljs-comment">// 将C++的vector转成PyObject类型</span><br>	PyObject* list1 = create<span class="hljs-constructor">List(<span class="hljs-params">nums1</span>)</span>;<br>	PyObject* list2 = create<span class="hljs-constructor">List(<span class="hljs-params">nums2</span>)</span>;<br>	PyObject* list3 = create<span class="hljs-constructor">List(<span class="hljs-params">nums3</span>)</span>;<br><br>	<span class="hljs-comment">// 多个参数传递到Python需要在外面再加一层tuple包装</span><br>	args = <span class="hljs-constructor">PyTuple_New(3)</span>;<br>	<span class="hljs-constructor">PyTuple_SetItem(<span class="hljs-params">args</span>, 0, <span class="hljs-params">list1</span>)</span>;<br>	<span class="hljs-constructor">PyTuple_SetItem(<span class="hljs-params">args</span>, 1, <span class="hljs-params">list2</span>)</span>;<br>	<span class="hljs-constructor">PyTuple_SetItem(<span class="hljs-params">args</span>, 2, <span class="hljs-params">list3</span>)</span>;<br><br>	<span class="hljs-comment">// 调用Python函数并得到函数返回值（PyObject类型返回值）</span><br>	PyObject* pyReturnValue = <span class="hljs-constructor">PyEval_CallObject(<span class="hljs-params">pFunc</span>, <span class="hljs-params">args</span>)</span>;<br><br>	<span class="hljs-comment">// 解析返回的PyObject类型为C++vector类型</span><br>	<span class="hljs-built_in">int</span> size_params = <span class="hljs-constructor">PyTuple_Size(<span class="hljs-params">pyReturnValue</span>)</span>;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; size_params; i++)<br>	&#123;<br>		PyObject* list_value = <span class="hljs-constructor">PyTuple_GetItem(<span class="hljs-params">pyReturnValue</span>, <span class="hljs-params">i</span>)</span>;<br>		<span class="hljs-built_in">int</span> size_list = <span class="hljs-constructor">PyList_Size(<span class="hljs-params">list_value</span>)</span>;<br>		vector&lt;<span class="hljs-built_in">int</span>&gt; result;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j &lt; size_list; j++)<br>		&#123;<br>			<span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>			<span class="hljs-constructor">PyArg_Parse(PyList_GetItem(<span class="hljs-params">list_value</span>, <span class="hljs-params">j</span>)</span>, <span class="hljs-string">&quot;i&quot;</span>, &amp;res);<br>			result.push<span class="hljs-constructor">_back(<span class="hljs-params">res</span>)</span>;<br>		&#125;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>; j &lt; result.size<span class="hljs-literal">()</span>; j++)<br>		&#123;<br>			cout &lt;&lt; result<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> &lt;&lt; <span class="hljs-string">&quot;,&quot;</span>;<br>		&#125;<br>		cout &lt;&lt; endl;<br>	&#125;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>运行结果<br><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step7.png" srcset="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
+<li><p>运行结果<br><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step7.png" srcset="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/themes_pic/loading.gif" lazyload></p>
 </li>
 </ol>
 <ul>
@@ -408,9 +408,9 @@
   <div id="waline"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
+      Fluid.utils.createScript('https://gcore.jsdelivr.net/npm/@waline/client@1/dist/Waline.min.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
+          {"serverURL":"https://waline.minghuijia.cn/","path":"window.location.pathname","placeholder":"欢迎评论","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://gcore.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","avatar":"retro","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"wordLimit":0,"pageSize":10,"highlight":true,"login":"force","visitor":true},
           {
             el: '#waline',
             path: window.location.pathname
@@ -554,8 +554,8 @@
 
   <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  <script  src="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://gcore.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -566,8 +566,8 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://gcore.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -589,16 +589,16 @@
 
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
   
   
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+    <script  src="https://gcore.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
   
   
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+    <script defer src="https://gcore.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
   
 
 
@@ -608,7 +608,7 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://gcore.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -661,7 +661,7 @@
       };
     </script>
 
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+    <script async src="https://gcore.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
 
   
 
