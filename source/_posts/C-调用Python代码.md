@@ -45,11 +45,11 @@ PyEval_CallObject(pFunc, pArg);
 
 ## 创建C++项目并完成环境和库配置
 - 包含目录：在创建好的C++项目，`右击项目->属性->C/C++/常规`，将安装Python路径下的`\include`目录添加进去
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png)
 - 附加库目录：在创建好的C++项目，`右击项目->属性->链接器->常规->附加库目录`，将安装Python路径下的`\libs`目录添加进去
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png)
 - 附加依赖项：在创建好的C++项目，`右击项目->属性->链接器->输入->附加依赖库`，在**debug**下输入`python36.lib`，在**release**下输入`python36_d.lib`（不同版本Python最后数字不一样，自行修改）
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png)
 ***注意：在Python安装路径下的`\libs`文件夹中可能只存在python36.lib而没有python36_d.lib，此时需要复制一份python36.lib，并重命名为python36_d.lib，此外安装的Python是32位与64位，要与C++项目的环境配置匹配***
 
 ## C++调用Python函数并传入参数（参数为简单类型）
@@ -107,7 +107,7 @@ using namespace std;
 **注意：PyImport_ImportModule，该函数似乎只能用相对路径，且PyImport_ImportModule函数传入的参数不能加”.py“**
 
 3. 运行结果
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png)
 
 ## C++调用Python函数并传入参数（参数为列表类型）
 1. 定义Python函数，并命名为test12.py
@@ -203,11 +203,11 @@ int main(int argc, char *argv[])
 {% endcodeblock %}
 3. 运行结果
 - console输出结果展示：
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png)
 可见在Python代码中的print可以在C++的console输出展示
 
 - 生成Excel展示
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step6.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step6.png)
 **重点：C++的vector数据转换成Python的元组或列表形式，首先需要创建对应的Object（PyList_New、PyTuple_New），然后循环赋值（PyList_Append、PyTuple_SetItem），再调用函数之前，需要再用一个元组将数据包装起来，才能成功**
 
 ## C++调用Python函数传入列表参数并返回列表参数
@@ -314,7 +314,7 @@ int main(int argc, char *argv[])
 {% endcodeblock %}
 
 3. 运行结果
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step7.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step7.png)
 
 - 上图红色框输出结果为C++ vector数据在调用时作为参数传递到函数后输出的结果
 - 上图黄色框输出结果为Python函数返回的两个list类型数据，在C++中解析后输出的结果

@@ -1,7 +1,7 @@
 ---
 title: Windows下Python2.7安装第三方库编码错误
 date: 2022-05-10 14:24:45
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Python_Install_Decode/python_decode_index.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Python_Install_Decode/python_decode_index.png
 excerpt: 解决Python2.7安装第三方库过程中出现UnicodeDecodeError问题
 tags:
   - Python

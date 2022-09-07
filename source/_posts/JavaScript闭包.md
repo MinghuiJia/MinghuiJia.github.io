@@ -2,7 +2,7 @@
 title: JavaScript闭包
 date: 2022-04-25 14:55:07
 excerpt: 由于JavaScript的闭包（closure）是其最强大的特性，jQuery、Vue.js库都使用了闭包特性来实现，本篇文章总结了一下博主自己对JavaScript闭包特性的学习和理解
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/JavaScript_Closure/closure2.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/JavaScript_Closure/closure2.png
 tags:
   - JavaScripy
   - 闭包
@@ -36,7 +36,7 @@ func();
 {% endnote %}
 
 - **闭包也是一种作用域**
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/JavaScript_Closure/closure1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/JavaScript_Closure/closure1.png)
 在chrome浏览器“开发者工具”的控制台可以看到闭包出现在`Scope`一栏，因此闭包也是一种作用域
 {% note info %}
 **闭包是一种作用域，它拷贝了一套外层函数作用域中被访问的参数、变量/函数，这个拷贝都是浅拷贝（引用）**

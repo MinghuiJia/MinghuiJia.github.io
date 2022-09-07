@@ -2,7 +2,7 @@
 title: Git分支多终端工作
 date: 2022-02-26 21:50:52
 excerpt: 由于hexo d将个人博客部署在GitHub仓库前需要进行编译，将Markdown等文件进行编译后生成网页并上传，并不包含源文件。因此，当在某个电脑环境下配置好Hexo+GitHub个人博客并进行了一段时间写作后，需要多终端切换工作，这时就需要在Git上进行上传分支
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Git_Branches_Work_With_Multiple_Terminals/index_img.jpg
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Git_Branches_Work_With_Multiple_Terminals/index_img.jpg
 tags:
   - Git
   - 多终端
@@ -23,10 +23,10 @@ categories:
 # 分支上传
 ## 创建分支
 1. 首先需要登录自己的GitHub主页，找到对应的repositories仓库。然后在按照如下图步骤创建一个hexo分支：
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step1.png)
 
 2. 然后在仓库的setting中，设置新创建的hexo分支为默认分支，如下图操作：
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step2.png)
 设置为默认分支的目的是为了方便同步，不用指定分支即可更新源码文件
 
 ## 本地克隆
@@ -37,7 +37,7 @@ categories:
 将GitHub仓库中的文件克隆到本地。此时由于已经设置了默认分支是hexo，所以只克隆hexo分支下的文件
 
 2. 然后在本地已经克隆好的文件夹（minghuijia.github.io）中删除***\.git文件夹***以外的所有文件，如下图红色框起来的文件均需要删除
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step3.png)
 
 3. 将本地之前写博客的源文件***除.deploy_git文件夹***外全部拷贝过来。***注意：拷贝到clone文件夹（minghuijia.github.io）中的源文件应包含一个.gitignore文件，用于忽略一些不需要的文件，如果没有该文件的话，自己创建一个并粘贴如下文字***：
 {% codeblock %}
@@ -49,9 +49,9 @@ categories:
 	public/
 	.deploy*/
 {% endcodeblock %}
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step4.png)
 另外需要注意，***如果theme是克隆来的，应该将主题文件夹中的.git文件夹删掉***。因为git不能嵌套上传，会导致上传时报错，无法上传主题文件，导致配置在其余终端不能用
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Cpp_Calls_Python_Code/step5.png)
 
 ## 上传分支
 上述操作完成后，Git Bash在当前文件夹下输入如下指令上传源文件：

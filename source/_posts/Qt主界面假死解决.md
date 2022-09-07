@@ -1,7 +1,7 @@
 ---
 title: Qt主界面假死解决
 excerpt: 在利用Qt进行可视化编程时，某个过于耗时的操作会造成界面卡死现象。例如用户点击界面的Button控件，程序会执行clicked槽函数中的操作，但是槽函数中的操作特别耗时，此时界面处于卡死状态（用户无法进行任何操作，包括拖动界面）。为了解决这一“假死”现象，需要用到多线程
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/index_img.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/index_img.png
 date: 2022-03-13 20:26:06
 tags:
   - Qt可视化编程
@@ -94,7 +94,7 @@ Qt线程的创建有两种方式：
 {% endcodeblock %}
 
 程序运行截图如下：
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/step1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Main_Interface_Resolved_By_Feigning_Death/step1.png)
 此时，程序在执行1000000次循环输出，而可视化界面不会卡死
 
 ***注意：因为此时界面和耗时程序执行操作在两个线程，如果后续需要传递数据的话，可以将数据通过信号槽的方式传递***

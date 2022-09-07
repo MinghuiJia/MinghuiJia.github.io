@@ -1,7 +1,7 @@
 ---
 title: KMP字符串匹配
 excerpt: KMP字符串匹配算法分析
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png
 date: 2022-03-02 21:36:46
 tags:
  - KMP
@@ -123,7 +123,7 @@ Knuth–Morris–Pratt（KMP）算法是一种改进的字符串匹配算法，�
 - 因此，在`P[0]P[1]...P[k-1]P[k]`中不断递归索引`k = next[k]`，找到一个字符`P[K']`，那么最大公共前后缀长度就是`K' + 1`S
 
 ## 解释k = next[k]能找到长度更短的最大公共前后缀
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/KMP_String_Match/KMP1.png)
 
 <br>
 <br>

@@ -1,7 +1,7 @@
 ---
 title: Qt子线程更新主线程进度条
 excerpt: 在Qt多线程编程过程中，常常会遇到不同线程之间数据传递的需求。此博客则是通过一个简单的例子——子线程任务处理过程中更新主线程进度条，来介绍线程间数据传递的解决方法
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Child_Thread_Updates_The_Main_Thread_Progressbar/step1.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Child_Thread_Updates_The_Main_Thread_Progressbar/step1.png
 date: 2022-03-13 21:46:45
 tags:
   - Qt多线程数据传递
@@ -114,7 +114,7 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget *parent)
 
 ## 结果展示
 程序运行截图如下：
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Child_Thread_Updates_The_Main_Thread_Progressbar/step1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Qt_Child_Thread_Updates_The_Main_Thread_Progressbar/step1.png)
 此时，程序在执行1000000次循环输出，可以实时更新处理进度
 
 # 辅助知识

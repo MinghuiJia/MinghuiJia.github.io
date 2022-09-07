@@ -2,7 +2,7 @@
 title: Qt读取Excel数据
 date: 2022-05-10 12:40:35
 excerpt: 作者写本篇博客的原因是，在前段时间基于Qt进行GUI程序开发过程中需要读取经济面板数据并将数据传入已写好的计量经济学模型中。因此我在网上查找了基于Qt读取Excel的教程，在这里做一个总结和归纳，方便以后需要相同需求时随时查看
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/QtExcel/qtexcel_index.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/QtExcel/qtexcel_index.png
 tags:
   - Qt
   - 数据读取
@@ -474,8 +474,8 @@ int main(int argc, char *argv[])
 2. 步骤1配置完成再执行上述代码时，编译器又会报错***无法打开Qt5AxContainerd.lib***，此时需要进行如下配置
 	- 右键点击项目->Qt Project Settings->General->Qt Modules 中勾选`ActiveQt Container`与`ActiveQt server`
 
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/QtExcel/qtexcel1.png)
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/QtExcel/qtexcel2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/QtExcel/qtexcel1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/QtExcel/qtexcel2.png)
 
 # 快速读取Excel
 ## 读取Excel慢的原因

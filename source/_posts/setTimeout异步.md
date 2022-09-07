@@ -2,7 +2,7 @@
 title: setTimeout异步
 date: 2022-04-25 19:34:03
 excerpt: setTimeout函数是JavaScript中典型的异步操作，本篇文章从setTimeout入手，加深对同步与异步区别的理解，并且理解JS引擎单线程如何实现异步
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async2.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async2.png
 tags:
   - JavaScript
   - 异步
@@ -34,7 +34,7 @@ setTimeout函数是JavaScript中典型的异步操作，本篇文章从setTimeou
 
 ## JavaScript单线程模式
 JavaScript是单线程的，但是其运行环境（Chrome浏览器）是多线程的
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async1.png)
 
 ### 浏览器多线程介绍
 浏览器中的线程包括但不限于：
@@ -85,7 +85,7 @@ JavaScript运行时，除了一个正在运行的主线程，引擎还提供多�
 
 ### 宏任务队列与微任务队列关系
 - 宏任务队列与微任务队列关系
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async3.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/setTimeout_async/async3.png)
 事件循环的每一次循环成为`tick`，其任务细节为：
 	- 调用栈选择最先进入队列的宏任务（通常是script整体代码），如果有则执行
 	- 检查是否存在微任务，如果存在，则不断执行微任务，直至清空微任务队列

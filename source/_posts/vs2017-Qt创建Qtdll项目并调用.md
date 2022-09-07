@@ -1,7 +1,7 @@
 ---
 title: vs2017+Qt创建Qtdll项目并调用
 excerpt: 将一些公用的工具函数可以进行封装并生成Dll，方便组内成员直接调用，提高开发效率
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png
 date: 2022-01-22 14:20:54
 tags:
  - Qt
@@ -16,9 +16,9 @@ categories:
 
 # 创建Qtdll项目
 1. 按照如下图方式在 vs2017 中创建一个Qtdll项目
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step1.png)
 项目创建成功后会自动生成两个.h文件和一个.cpp文件如下图。**此外刚创建项目后include部分会报错，需要增加两行代码`#include <iostream>`;`using namespcae std;`**
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step2.png)
 
 2. 在创建的Qtdll项目中编写测试函数（求和函数）
 {% codeblock %}
@@ -36,19 +36,19 @@ categories:
 {% endcodeblock %}
 
 3. 在vs里面的解决方案资源管理器栏内右键点击`解决方案`，选择`生成解决方案`，成功后会看到如下界面
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step3.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step3.png)
 同时在Qtdll项目`x64\Debug`路径下可以看到生成的文件（.dll与.Lib）
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step4.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step4.png)
 
 # 创建调用Qtdll的项目
 1. 为了方便期间，创建一个QtConsoleApplication项目对生成的Qtdll进行调用
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step5.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step5.png)
 
 2. 将Qtdll项目的中的两个.h文件（`QtClassLibrary1.h`,`qtclasslibrary1_global.h`）以及.lib文件（`QtClassLibrary1.lib`）移动到QtConsoleApplication项目的如下图位置
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step6.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step6.png)
 
 3. 将Qtdll项目的中的.dll文件（`QtClassLibrary1.dll`）移动到QtConsoleApplication项目的如下图位置
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step7.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step7.png)
 
 4. 在QtConsoleApplication项目中添加头文件（`QtClassLibrary1.h`,`qtclasslibrary1_global.h`）与lib文件（`QtClassLibrary1.lib`），并调用Dll
 {% codeblock %}
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 {% endcodeblock %}
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step8.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Vs2017_Qt_Creates_Qtdll_Project_And_Calls_It/step8.png)
 
 # 补充知识
 1. 导入dll库

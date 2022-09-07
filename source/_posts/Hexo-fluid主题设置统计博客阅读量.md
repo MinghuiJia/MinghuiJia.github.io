@@ -1,7 +1,7 @@
 ---
 title: Hexo-fluid主题设置统计博客阅读量与评论
 excerpt: 本篇博客基于LeanCloud统计博客页面访问次数与访问人数、及文章阅读次数，以及实现文章与友情链接评论功能
-index_img: https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/index_img1.png
+index_img: https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/index_img1.png
 date: 2022-03-14 21:05:19
 comment: false
 tags:
@@ -21,15 +21,15 @@ categories:
 ## LeanCloud数据库设置
 1. 进入`LeanCloud官网`:https://www.leancloud.cn/ ，或`LeanCloud国际版`:https://leancloud.app/ ，注册账号并完成实名认证和邮箱验证
 2. 在LeanCloud主页面按照如下3步骤，进行应用的创建（用户名随意起）
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step1.png)
 3. 创建Class，按照如下步骤，在`数据存储`->`结构化存储`创建Class
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step2.png)
 **注意：**
 - 此处创建的 Class 名字必须为Counter，用来保证与NexT主题的修改相兼容，fluid没有限制要求
 - ACL权限选择无限制，避免后续因为权限的问题导致次数统计显示不正常
 4. 在创建的应用设置中寻找AppID与AppKey
-<div align=center><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step3.png" /></div>
-<div align=center><img src="https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step4.png" /></div>
+<div align=center><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step3.png" /></div>
+<div align=center><img src="https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step4.png" /></div>
 
 ## 修改主题配置文件中LeanCloud参数
 1. 打开fluid的主题配置文件`_config.yml`，把配置 LeanCloud时的AppID与AppKey复制到如下位置，并设置`ignore_local`为`true`，保证在本地启动服务的时候不会记录访问次数
@@ -97,20 +97,20 @@ views:
 **注意：如果未登录过，Vercel会让你注册或登录，可使用GitHub账户进行快捷登录**
 {% endnote %}
 2. 输入一个自定义`Vercel`项目名称并点击`Create`创建项目
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel1.png)
 3. 此时`Vercel`会基于Waline模板新建并初始化仓库到GitHub，仓库名为之前输入的项目名称。项目部署会等待一小会儿
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel2.png)
 4. 项目部署成功后，点击`Go to Dashboard`跳转至应用控制台。然后点击顶部的`Settings`-`Environment Variables`进入环境变量配置页，并配置三个环境变量名称为：`LEAN_ID`、`LEAN_KEY`、`LEAN_MASTER_KEY`，它们的值分别对应`LeanCloud`中得到的`APP ID`、`APP KEY`、`Master Key`
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel3.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel3.png)
 {% note info %}
 使用LeanCloud国内版，需要额外配置`LEAN_SERVER`环境变量，值为绑定好的域名
 {% endnote %}
 5. 环境变量配置好之后，点击顶部的`Deployments`，然后点击顶部最新的一次部署右侧的`Redeploy`按钮进行重新部署，使得刚设置的环境变量生效
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel4.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel4.png)
 6. 等待几分钟后，部署项目的状态`STATUS`会变成`Ready`。此时点击页面中的`Visit`即可跳转到刚部署好的网站地址，该地址就是今后评论系统的服务端地址
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel5.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel5.png)
 7. 接下来点击顶部的`Settings`-`Domains`进入域名配置页，输入需要绑定的域名并点击Add
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel6.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel6.png)
 {% note info %}
 绑定域名为**example.yourdomain.com**，其中`example`可以自定义修改，`yourdomain.com`则是自己的域名
 {% endnote %}
@@ -119,7 +119,7 @@ views:
 |:-----------:|:------------:|:-------------------------:|
 |   CNAME     |   example    |    cname.vercel-dns.com   |
 9. 最后等待生效，看到如下图则表明绑定成功
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel7.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/vercel7.png)
 {% note info %}
 - 评论系统：example.yourdomain.com
 - 评论管理：example.yourdomain.com/ui
@@ -146,7 +146,7 @@ waline:
   meta: ['nick', 'mail', 'link']
   requiredMeta: ['nick']
   lang: 'zh-CN'
-  emoji: ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
+  emoji: ['https://gcore.jsdelivr.net/gh/walinejs/emojis/weibo']
   dark: 'html[data-user-color-scheme="dark"]'
   avatar: 'retro'
   avatarCDN: 'https://seccdn.libravatar.org/avatar/'
@@ -214,7 +214,7 @@ categories:
 	- `SMTP_PASS`：SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱(例如 163)是单独的 SMTP 密码
 	- `AUTHOR_EMAIL`：博主邮箱，用来接收新评论通知。如果是博主发布的评论则不进行提醒通知
 
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/email1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/email1.png)
 {% note success %}
 `SMTP_SERVICE`所支持的运营商可以在[**这里**](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)查看
 如果运营商不受支持，则必须填写`SMTP_HOST`与`SMTP_PORT`。
@@ -226,19 +226,19 @@ categories:
 {% endnote %}
 2. 环境变量配置好之后，点击顶部的`Deployments`，然后点击顶部最新的一次部署右侧的`Redeploy`按钮进行重新部署，使得刚设置的环境变量生效
 3. 在LeanCloud应用的`设置`-`安全中心`中，将`推送服务`打开
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/email2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/email2.png)
 
 
 # 后台管理
 当以上部分配置完成之后，我们的博客页面打开时，便会自动向服务器发送信息
 1. 在我们刚才创建的应用waline-test的Counter表中，可以看到创建了每篇文章阅读的次数，以及用户访问博客的次数及人数
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step8.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/step8.png)
 ***需要特别说明的是：***
 记录文章访问量的唯一标识符是文章的发布日期和文章的标题，因此要确保这两个数值组合的唯一性，如果你更改了这两个数值，会造成文章阅读数值的清零重计。其中time字段的数值表示某一篇文章的访问量，其他字段的具体作用可以查阅LeanCloud官方文档，最好不要随意修改
 2. 在Comment表中可以看到在博客中的留言信息
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/comment1.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/comment1.png)
 3. 在Users表中可以看到所有注册过的用户信息
-![](https://cdn.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/comment2.png)
+![](https://gcore.jsdelivr.net/gh/MinghuiJia/CDN-source/Hexo-fluid_Theme_Setting_Counts_Blog_Reads/comment2.png)
 {% note info %}
 当使用评论的登录功能时，第一个注册的用户默认为评论管理系统的管理员。因此用户配置评论系统后需及时申请管理员账号
 {% endnote %}
